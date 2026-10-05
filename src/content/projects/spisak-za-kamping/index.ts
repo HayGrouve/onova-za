@@ -16,6 +16,7 @@ export default defineProject({
   topics: ['pochivka'],
   years: { from: 2022 },
   updatedAt: '2026-10-02',
+  seo: { title: 'Списък за къмпинг: какво да вземем с палатка' },
   links: {
     live: 'https://palatki.netlify.app',
     github: 'https://github.com/HayGrouve/camping',

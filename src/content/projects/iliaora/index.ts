@@ -21,8 +21,10 @@ export default defineProject({
   topics: ['hrana', 'biznes'],
   years: { from: 2026 },
   updatedAt: '2026-08-18',
+  seo: { title: 'Iliaora: сайт за торти и донъти по поръчка' },
   links: { live: 'https://iliaora.com' },
   stack: [{ tech: 'tanstack-start' }, { tech: 'tailwind' }, { tech: 'vercel' }],
+  featured: true,
   hue: 350,
   cover: {
     src: home,

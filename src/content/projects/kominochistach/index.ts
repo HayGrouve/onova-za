@@ -20,6 +20,7 @@ export default defineProject({
   topics: ['dom', 'biznes'],
   years: { from: 2020 },
   updatedAt: '2026-09-25',
+  seo: { title: 'Коминочистач: сайт за почистване на комини' },
   links: { live: 'https://komini-sofia.com' },
   stack: [
     { tech: 'react' },
@@ -27,7 +28,7 @@ export default defineProject({
     { tech: 'shadcn' },
     { tech: 'netlify' },
   ],
-  hue: 12,
+  hue: 50,
   cover: {
     src: home,
     frame: 'browser',

@@ -12,20 +12,20 @@ Synthesis of `docs/research/01` to `05`. This is the brief every page is built a
 
 - The **за-phrase** (`za` in data) is the brand's unit. One lowercase noun phrase per project. It is the biggest text on every card and the first thing on every project page.
 - Brand line: "Малки приложения и сайтове. Всяко е за нещо." Short, true, and it puns on "за".
-- Definition block (About and footer): "**онова за** *разг.* Каквото казваш, когато не помниш как се казва нещо, но знаеш за какво е."
+- Definition block (About and footer): "**онова за** _разг._ Каквото казваш, когато не помниш как се казва нещо, но знаеш за какво е."
 - Voice: informal "ти", verbs first, concrete nouns, no corporate filler, no hype words (иновативен, революционен, страстен). Plain functional copy beats cute copy.
 - Bulgarian letterforms are the "from here" cue: Sofia Sans (Lettersoup, Sofia) draws Bulgarian Cyrillic by default; `lang="bg"` everywhere. No шевици, no tricolour, no folk kitsch.
 
 ## 2. Information architecture
 
-| Path | Page | Notes |
-|---|---|---|
-| `/` | Library | Brand intro + every project. Two headed groups under 15 projects: **Мои**, then **За клиенти**. |
-| `/proekti` | Index | Dense table of every project: за-phrase, name, status, type, years, domain. Doubles as the owner's dashboard. `CollectionPage` + `ItemList`. |
-| `/proekti/[slug]` | Project | One page per project, own or client. |
-| `/za-men` | About | Short. Who, what, why "онова за", profiles, contact. `ProfilePage`. |
-| later `/belezhki` | Notes | Only once 3+ notes exist. Never an empty nav item. |
-| later `/tema/[tema]` | Topic | Only for topics with 3+ projects. |
+| Path                 | Page    | Notes                                                                                                                                        |
+| -------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/`                  | Library | Brand intro + every project. Two headed groups under 15 projects: **Мои**, then **За клиенти**.                                              |
+| `/proekti`           | Index   | Dense table of every project: за-phrase, name, status, type, years, domain. Doubles as the owner's dashboard. `CollectionPage` + `ItemList`. |
+| `/proekti/[slug]`    | Project | One page per project, own or client.                                                                                                         |
+| `/za-men`            | About   | Short. Who, what, why "онова за", profiles, contact. `ProfilePage`.                                                                          |
+| later `/belezhki`    | Notes   | Only once 3+ notes exist. Never an empty nav item.                                                                                           |
+| later `/tema/[tema]` | Topic   | Only for topics with 3+ projects.                                                                                                            |
 
 Navigation: wordmark (home), **Проекти**, **За мен**. Always visible, never a hamburger.
 
@@ -33,12 +33,12 @@ Discovery scales by count, from the same data: none under 15 projects; status/ow
 
 ## 3. Taxonomy
 
-| Facet | Values (id: label) |
-|---|---|
+| Facet  | Values (id: label)                                                           |
+| ------ | ---------------------------------------------------------------------------- |
 | Status | live: На живо, building: В правене, experiment: Експеримент, archived: Архив |
-| Owner | own: Мое / Мои, client: За клиент / За клиенти |
-| Type | app: Приложение, site: Сайт, system: Система, desktop: Десктоп |
-| Topic | internal only (related projects, later topic pages) |
+| Owner  | own: Мое / Мои, client: За клиент / За клиенти                               |
+| Type   | app: Приложение, site: Сайт, system: Система, desktop: Десктоп               |
+| Topic  | internal only (related projects, later topic pages)                          |
 
 Cards show only filterable facets: status and the client tag. Never tech stacks or dates.
 

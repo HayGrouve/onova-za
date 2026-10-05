@@ -4,7 +4,7 @@
 export const STATUSES = {
   live: {
     label: 'На живо',
-    hint: 'Работи и може да се ползва.',
+    hint: 'Работи и се ползва.',
   },
   building: {
     label: 'В правене',
@@ -49,7 +49,10 @@ export const TOPICS = {
 
 export const TECH = {
   next: { name: 'Next.js', url: 'https://nextjs.org' },
-  'tanstack-start': { name: 'TanStack Start', url: 'https://tanstack.com/start' },
+  'tanstack-start': {
+    name: 'TanStack Start',
+    url: 'https://tanstack.com/start',
+  },
   react: { name: 'React', url: 'https://react.dev' },
   vite: { name: 'Vite', url: 'https://vite.dev' },
   cra: { name: 'Create React App' },
@@ -70,9 +73,3 @@ export const TECH = {
   vercel: { name: 'Vercel', url: 'https://vercel.com' },
   netlify: { name: 'Netlify', url: 'https://www.netlify.com' },
 } as const
-
-export type StatusId = keyof typeof STATUSES
-export type OwnerId = keyof typeof OWNERS
-export type TypeId = keyof typeof TYPES
-export type TopicId = keyof typeof TOPICS
-export type TechId = keyof typeof TECH

@@ -7,4 +7,5 @@ export const paths = {
   projects: () => '/proekti' as Route,
   project: (slug: string) => `/proekti/${slug}` as Route,
   about: () => '/za-men' as Route,
+  contact: () => '/za-men#pishi-mi' as Route,
 }

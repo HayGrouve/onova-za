@@ -13,7 +13,7 @@ export function Inline({ text }: { text: string }) {
 function renderPart(part: string, key: number): ReactNode {
   if (part.startsWith('**') && part.endsWith('**')) {
     return (
-      <strong key={key} className="font-semibold text-foreground">
+      <strong key={key} className="text-foreground font-semibold">
         {part.slice(2, -2)}
       </strong>
     )

@@ -7,7 +7,8 @@ export default defineProject({
   slug: 'onova-za-smetkata',
   name: 'Онова за сметката',
   za: 'сметката',
-  pitch: 'Снимаш бележката, всеки отбелязва своето и връща парите на един човек.',
+  pitch:
+    'Снимаш бележката, всеки отбелязва своето и връща парите на един човек.',
   description:
     'Приложение за разделяне на сметка в ресторант: снимате бележката, всеки отбелязва какво е ял и пил и връща парите с Revolut или по IBAN.',
   owner: 'own',
@@ -16,6 +17,7 @@ export default defineProject({
   topics: ['pari', 'hrana'],
   years: { from: 2026 },
   updatedAt: '2026-10-05',
+  seo: { title: 'Онова за сметката: разделяне на сметка по артикули' },
   links: {
     live: 'https://www.onova-za-smetkata.com',
     github: 'https://github.com/HayGrouve/onova-za-smetkata',

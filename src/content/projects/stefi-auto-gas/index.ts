@@ -20,6 +20,7 @@ export default defineProject({
   topics: ['avto', 'biznes'],
   years: { from: 2026 },
   updatedAt: '2026-08-04',
+  seo: { title: 'Stefi Auto Gas: сайт за автосервиз в Ловеч' },
   links: { live: 'https://www.stefi-gas.com' },
   stack: [{ tech: 'tanstack-start' }, { tech: 'tailwind' }, { tech: 'vercel' }],
   hue: 210,

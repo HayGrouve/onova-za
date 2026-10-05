@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 
+import { SiteFooter } from '@/components/site-footer'
+import { SiteHeader } from '@/components/site-header'
 import { fontVariables } from '@/lib/fonts'
 import { SITE_URL, site } from '@/lib/site'
 
@@ -35,14 +37,16 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="bg" className={fontVariables} suppressHydrationWarning>
-      <body className="min-h-dvh">
+      <body className="flex min-h-dvh flex-col">
         <a
           href="#main"
-          className="fixed top-2 left-2 z-50 -translate-y-24 bg-foreground px-4 py-3 text-background focus:translate-y-0"
+          className="bg-foreground text-background fixed top-2 left-2 z-50 -translate-y-24 px-4 py-3 focus:translate-y-0"
         >
           Към съдържанието
         </a>
-        {children}
+        <SiteHeader />
+        <div className="flex-1">{children}</div>
+        <SiteFooter />
       </body>
     </html>
   )

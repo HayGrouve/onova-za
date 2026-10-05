@@ -20,6 +20,7 @@ export default defineProject({
   topics: ['dom', 'biznes'],
   years: { from: 2025, to: 2026 },
   updatedAt: '2026-07-30',
+  seo: { title: 'Мебели на Андрей Какрински: сайт с каталог' },
   links: { live: 'https://www.a-el-key.com' },
   stack: [
     { tech: 'next' },
@@ -32,6 +33,7 @@ export default defineProject({
       why: 'Предлага име, описание и категория по снимка, до 50 пъти на ден.',
     },
   ],
+  featured: true,
   hue: 90,
   cover: {
     src: home,

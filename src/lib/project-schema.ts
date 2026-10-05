@@ -63,7 +63,10 @@ export const projectSchema = z
       .optional(),
     type: z.enum(keys(TYPES)),
     status: z.enum(keys(STATUSES)),
-    topics: z.array(z.enum(keys(TOPICS))).min(1).max(3),
+    topics: z
+      .array(z.enum(keys(TOPICS)))
+      .min(1)
+      .max(3),
     years: z.object({
       from: z.number().int().min(2018).max(2100),
       to: z.number().int().min(2018).max(2100).optional(),
@@ -106,12 +109,22 @@ export const projectSchema = z
     related: z.array(slug).max(3).optional(),
     seo: z
       .object({
-        title: z.string().max(70).optional(),
+        // Search result title before " | онова за". About 50 characters keeps
+        // the whole title visible in Google.
+        title: z.string().max(52).optional(),
         noindex: z.boolean().optional(),
       })
       .optional(),
   })
   .superRefine((p, ctx) => {
+    // `pnpm new:project` marks every placeholder with TODO.
+    if (JSON.stringify(p).includes('TODO')) {
+      ctx.addIssue({
+        code: 'custom',
+        path: [],
+        message: 'Replace every TODO placeholder before publishing',
+      })
+    }
     if ((p.owner === 'client') !== Boolean(p.client)) {
       ctx.addIssue({
         code: 'custom',
@@ -120,7 +133,11 @@ export const projectSchema = z
       })
     }
     if (p.years.to && p.years.to < p.years.from) {
-      ctx.addIssue({ code: 'custom', path: ['years'], message: 'Ends before it starts' })
+      ctx.addIssue({
+        code: 'custom',
+        path: ['years'],
+        message: 'Ends before it starts',
+      })
     }
     const words = p.body.why.split(/\s+/).length
     if (words < 25 || words > 130) {

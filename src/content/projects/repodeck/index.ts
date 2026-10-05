@@ -15,6 +15,7 @@ export default defineProject({
   topics: ['kod'],
   years: { from: 2026 },
   updatedAt: '2026-10-05',
+  seo: { title: 'RepoDeck: всички Git хранилища на един екран' },
   uiLanguage: 'en',
   stack: [
     {
@@ -45,6 +46,7 @@ export default defineProject({
     ],
     limits:
       'Засега няма инсталатори и кодът не е публичен. Цели Windows и macOS.',
-    state: 'Първата работеща версия е от тази седмица, а след нея дойде и първият одит на скоростта.',
+    state:
+      'Първата работеща версия е от тази седмица, а след нея дойде и първият одит на скоростта.',
   },
 })

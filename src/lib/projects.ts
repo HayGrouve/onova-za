@@ -12,7 +12,9 @@ function load(): Project[] {
     if (!result.success) {
       const where = (input as { slug?: string }).slug ?? `registry[${i}]`
       const issues = result.error.issues
-        .map((issue) => `  ${issue.path.join('.')}: ${issue.message}`)
+        .map(
+          (issue) => `  ${issue.path.join('.') || 'project'}: ${issue.message}`,
+        )
         .join('\n')
       throw new Error(`Invalid project "${where}":\n${issues}`)
     }

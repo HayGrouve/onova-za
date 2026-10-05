@@ -42,3 +42,7 @@ next-env.d.ts
 
 # Raw research captures (chosen images live in src/content/projects)
 /public/projects/
+
+# Playwright
+/test-results/
+/playwright-report/

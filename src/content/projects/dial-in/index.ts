@@ -15,6 +15,7 @@ export default defineProject({
   topics: ['kafe', 'hrana'],
   years: { from: 2026 },
   updatedAt: '2026-10-05',
+  seo: { title: 'Dial In: дневник за мелене на кафе' },
   uiLanguage: 'en',
   links: {
     live: 'https://dial-in-three.vercel.app',

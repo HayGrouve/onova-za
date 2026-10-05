@@ -1,5 +1,7 @@
 // Every published project, in editorial order: own work first, newest and
 // most alive on top. Adding a project means one folder and one line here.
+// On the home page featured labels take two rows and alternate sides, so
+// within a group the order also decides the layout.
 import aElKey from './projects/a-el-key'
 import alisa from './projects/alisa'
 import chef from './projects/chef'
@@ -18,10 +20,10 @@ export const registry = [
   dialIn,
   repodeck,
   spisakZaKamping,
-  stefiAutoGas,
   iliaora,
-  aElKey,
+  stefiAutoGas,
   kominochistach,
+  aElKey,
   alisa,
   svatbenaPokana,
 ]
