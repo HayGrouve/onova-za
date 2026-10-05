@@ -1,26 +1,200 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+/* Theme: follows the system unless <html data-theme> pins it. */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light dark;
+
+  /* Neutrals: cool grey, no warm paper. Contrast noted against --background. */
+  --background: light-dark(#f5f7f9, #0d1013);
+  --surface: light-dark(#ebedef, #171a1d);
+  --foreground: light-dark(#101419, #eceff1); /* 17.2 / 16.5 */
+  --muted-foreground: light-dark(#54585f, #a0a5ac); /* 6.7 / 7.7 */
+  --border: light-dark(#d2d4d7, #2e3134);
+  --line-strong: light-dark(#9ea2a8, #4a4e53);
+
+  /* shadcn names, mapped onto the palette above. */
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--background);
+  --popover-foreground: var(--foreground);
+  --primary: var(--foreground);
+  --primary-foreground: var(--background);
+  --secondary: var(--surface);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--surface);
+  --accent: var(--surface);
+  --accent-foreground: var(--foreground);
+  --destructive: light-dark(#b42318, #ff8a7a);
+  --input: var(--border);
+  --ring: var(--foreground);
+  --radius: 0.125rem;
+
+  /* Project accent. Pages and cards set --h (OKLCH hue); lightness and chroma
+     are fixed per theme so contrast holds for every hue (enamel, not candy:
+     fills use low chroma, tints keep enough to read as colour):
+     --fill always carries ink text (>= 7:1), --tint is text on the page
+     background (>= 5.2:1 light, >= 8.3:1 dark).
+     Custom properties resolve where they are declared, so every element that
+     sets --h also carries [data-accent] to recompute them (see lib/accent). */
+  --h: 250;
+  --fill-ink: light-dark(#101419, #0d1013);
+
+  --header-h: 4rem;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+:root,
+[data-accent] {
+  --fill: light-dark(oklch(0.78 0.12 var(--h)), oklch(0.72 0.105 var(--h)));
+  --tint: light-dark(oklch(0.5 0.17 var(--h)), oklch(0.76 0.14 var(--h)));
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-line-strong: var(--line-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-fill: var(--fill);
+  --color-fill-ink: var(--fill-ink);
+  --color-tint: var(--tint);
+
+  --font-sans: var(--font-text), ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    var(--font-display), var(--font-text), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
+  --font-heading: var(--font-display);
+
+  --radius-sm: var(--radius);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);
+  --radius-4xl: var(--radius);
+
+  --ease-out: var(--ease-out);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: 'kern';
+  }
+  ::selection {
+    background: var(--fill);
+    color: var(--fill-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--foreground);
+    outline-offset: 2px;
+  }
+  /* Bulgarian wraps badly when headings are balanced word by word; prefer
+     pretty wrapping for prose and balance only short headings. */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Нърд режим. Pages render both versions; <html data-nerd> (set before the
+   first paint, see components/nerd) decides which shows. Unlayered on
+   purpose, so it wins over Tailwind's display utilities. */
+:root:not([data-nerd]) [data-mode='nerd'],
+:root[data-nerd] [data-mode='plain'] {
+  display: none;
+}
+
+/* The page column. One width for every page. */
+@utility shell {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+/* Quiet text link: underline on hover and focus only. */
+@utility link-quiet {
+  text-decoration-line: none;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 1px;
+  &:hover {
+    text-decoration-line: underline;
+  }
+}
+
+/* Prose link: always underlined, the line darkens on hover. */
+@utility link-prose {
+  text-decoration-line: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 1px;
+  &:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
+/* Shared-element morph between a project label and its page. Clicks pass
+   through the overlay so a fast second click is never lost. */
+::view-transition {
+  pointer-events: none;
+}
+::view-transition-group(.morph) {
+  animation-duration: 340ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 180ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0s !important;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+  }
 }

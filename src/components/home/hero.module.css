@@ -1,0 +1,63 @@
+/* "онова за" plus a blank that fills in. Every completion sits in one grid
+   cell, so the slot is as wide as the longest and nothing moves on swap. */
+
+.hero {
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.2em;
+  margin: 0;
+  font-family: var(--font-display), var(--font-text), sans-serif;
+  font-size: clamp(3.25rem, 8.1vw, 7.5rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+}
+
+.slot {
+  display: grid;
+}
+
+.completion {
+  position: relative;
+  grid-area: 1 / 1;
+  padding-bottom: 0.1em;
+  opacity: 0;
+  --bar: var(--fill);
+}
+
+/* The blank's line. Each completion carries its own, so the line changes
+   colour with the word and needs no transition of its own. */
+.completion::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 0.045em;
+  background: var(--bar);
+}
+
+.completion[data-completion='default'] {
+  opacity: 1;
+  --bar: var(--foreground);
+}
+
+.completion:not([data-completion='default']) {
+  color: var(--tint);
+}
+
+.lede {
+  max-width: 34rem;
+  margin: clamp(1rem, 2vw, 1.5rem) 0 0;
+  font-size: clamp(1.0625rem, 1.2vw + 0.6rem, 1.3125rem);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .completion {
+    transition: opacity 120ms var(--ease-out);
+  }
+}

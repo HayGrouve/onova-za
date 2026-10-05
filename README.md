@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# онова за
 
-## Getting Started
+Everything Цветомир Цеков makes, in one place: small apps for everyday problems and websites for people with a small business. Each project is named by what it is for: онова за сметката, онова за кафето, онова за мебелите.
 
-First, run the development server:
+Next.js 16 (App Router, all static), Tailwind v4, shadcn/ui, Sofia Sans. No backend.
+
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+pnpm dev            # http://localhost:3000
+pnpm ci:preflight   # format, lint, types, knip, tests, production build
+pnpm test:e2e       # Playwright smoke + axe (run pnpm test:e2e:install once)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`NEXT_PUBLIC_SITE_URL` sets the canonical origin (defaults to `https://onova-za.com`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Add a project
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm new:project onova-za-kuhnyata "кухнята"
+```
 
-## Learn More
+1. Drop a screenshot next to the new `index.ts` as `cover.webp` (browser shots 1440x900, phone shots 780x1688).
+2. Replace every `TODO` and fill in the fields. The schema explains each one; `pnpm build` fails with the slug and field until everything is valid (alt text, word counts, hue band, client block, no `TODO` left).
+3. Pick a `hue` (OKLCH degrees, anything outside 270 to 320). A test checks that every allowed hue keeps contrast in both themes, so any value is safe; pick one far from its neighbours on the wall.
+4. Set `seo.title` (about 50 characters, what people would search for) if the default `{name}: {pitch}` is longer.
+5. That's it: the project appears on the homepage, the index, related projects, the sitemap, structured data and gets its own OG image.
 
-To learn more about Next.js, take a look at the following resources:
+The order in `src/content/registry.ts` is the order on the wall. `featured: true` gives a label two rows and its screenshot; featured labels alternate sides, and if a group ends on an odd cell the last regular label runs full width.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Slugs use the official Bulgarian transliteration (`kuhnyata`, not `kuhnqta`); a product's own Latin name wins (`dial-in`).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Нърд режим
 
-## Deploy on Vercel
+A header switch, off by default. Off shows the plain library; on adds the stack, how each project is made, code links, my part in client work and work history. It is a client preference on static pages (no cookies, no dynamic rendering): both versions are in the HTML, `data-mode="nerd"` / `data-mode="plain"` mark them, and an inline script in `<head>` sets `<html data-nerd>` from localStorage before the first paint. Share `https://onova-za.com/?nerd=1` to open the site with it on.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Docs
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `CONTEXT.md`: glossary
+- `docs/strategy.md`: brand, IA, SEO and design decisions
+- `docs/concepts-evaluation.md`: the three homepage concepts and why "Етикети" won
+- `docs/research/`: the research behind them
