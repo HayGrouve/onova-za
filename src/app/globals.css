@@ -176,6 +176,33 @@
   animation-duration: 180ms;
 }
 
+/* Page change: the old page fades out fast, the new one rises 8px and fades
+   in a beat later, so the two never compete. */
+::view-transition-old(.page-exit) {
+  animation: 120ms ease-in both page-fade reverse;
+}
+::view-transition-new(.page-enter) {
+  animation: 260ms cubic-bezier(0.2, 0, 0, 1) 80ms both page-rise;
+}
+@keyframes page-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes page-rise {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(*),
   ::view-transition-old(*),

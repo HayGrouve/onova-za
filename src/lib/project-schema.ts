@@ -84,14 +84,8 @@ export const projectSchema = z
     cover: shot,
     screens: z.array(shot).max(4).default([]),
     body: z.object({
-      // "За какво ти е": two or three concrete situations.
-      useCases: z.array(inline).min(1).max(4),
-      // "Защо го направих" (own) or "Задачата" (client). 30 to 120 words.
-      why: inline,
-      // One honest limit or thing I would change.
-      limits: inline.optional(),
-      // Where it stands today.
-      state: inline,
+      // "За какво ти е": what it is and the problem it solves. 20 to 70 words.
+      about: inline,
     }),
     related: z.array(slug).max(3).optional(),
     seo: z
@@ -126,12 +120,12 @@ export const projectSchema = z
         message: 'Ends before it starts',
       })
     }
-    const words = p.body.why.split(/\s+/).length
-    if (words < 25 || words > 130) {
+    const words = p.body.about.split(/\s+/).length
+    if (words < 20 || words > 70) {
       ctx.addIssue({
         code: 'custom',
-        path: ['body', 'why'],
-        message: `Keep "why" between 25 and 130 words (now ${words})`,
+        path: ['body', 'about'],
+        message: `Keep "about" between 20 and 70 words (now ${words})`,
       })
     }
   })

@@ -1,15 +1,13 @@
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
 import Link from 'next/link'
 
-import { STATUSES, TYPES } from '@/content/taxonomy'
 import { accent } from '@/lib/accent'
 import { paths } from '@/lib/paths'
 import type { Project } from '@/lib/project-schema'
-import { yearsLabel } from '@/lib/projects'
 
 import styles from './project-index.module.css'
 
-export const domain = (url: string) => new URL(url).host.replace(/^www\./, '')
+const domain = (url: string) => new URL(url).host.replace(/^www\./, '')
 
 // "Онова за сметката" is both the name and the phrase: say it once.
 const nameRepeatsPhrase = (p: Project) =>
@@ -32,25 +30,17 @@ function Row({ project: p }: { project: Project }) {
       </p>
       <dl className={styles.facts}>
         <div>
-          <dt className="sr-only">Вид</dt>
-          <dd>{TYPES[p.type].label}</dd>
-        </div>
-        <div>
-          <dt className="sr-only">Статус</dt>
-          <dd className={p.status === 'live' ? undefined : 'font-semibold'}>
-            {STATUSES[p.status].label}
-          </dd>
-        </div>
-        <div>
-          <dt className="sr-only">Години</dt>
-          <dd className="tabular-nums">{yearsLabel(p)}</dd>
-        </div>
-        <div>
           <dt className="sr-only">Адрес</dt>
           <dd>
             {p.links.live ? (
-              <a href={p.links.live} className={`${styles.address} link-prose`}>
+              <a
+                href={p.links.live}
+                target="_blank"
+                rel="noopener"
+                className={`${styles.address} link-prose`}
+              >
                 {domain(p.links.live)}
+                <span className="sr-only"> (отваря се в нов раздел)</span>
               </a>
             ) : (
               <span className={styles.muted}>без публичен адрес</span>

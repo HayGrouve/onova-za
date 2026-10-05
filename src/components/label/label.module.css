@@ -249,21 +249,23 @@
 
 /* ----------------------------------------------------------------- motion */
 
+/* Cards lift on hover and press in on click. The project page header is a
+   link too, but it stays put. */
 @media (prefers-reduced-motion: no-preference) {
   .face {
     transition: transform 160ms var(--ease-out);
   }
-  .label:active .face {
+  .label:not(.masthead):active .face {
     transform: translateY(1px);
     transition-duration: 60ms;
   }
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .label:hover .face {
+  .label:not(.masthead):hover .face {
     transform: translateY(-2px);
   }
-  .label:hover:active .face {
+  .label:not(.masthead):hover:active .face {
     transform: translateY(1px);
   }
 }
@@ -274,14 +276,6 @@
 .neutral {
   --fill: var(--surface);
   --fill-ink: var(--foreground);
-}
-
-.blank {
-  display: block;
-  width: 70%;
-  height: 0.09em;
-  margin-top: 0.62em;
-  background: currentColor;
 }
 
 /* --------------------------------------------------------------- the wall */

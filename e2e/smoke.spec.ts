@@ -5,7 +5,7 @@ const pages = [
   '/',
   '/proekti',
   '/proekti/onova-za-smetkata',
-  '/proekti/iliaora',
+  '/proekti/chef',
   '/za-men',
 ]
 
@@ -57,7 +57,7 @@ test('every project on the home page links to its own page', async ({
 }) => {
   await page.goto('/')
   const links = page.locator('main a[href^="/proekti/"]')
-  expect(await links.count()).toBeGreaterThanOrEqual(11)
+  expect(await links.count()).toBeGreaterThanOrEqual(4)
 
   const first = links.first()
   const href = await first.getAttribute('href')

@@ -46,11 +46,9 @@ Cards show only filterable facets: status and the client tag. Never tech stacks 
 
 1. Header: "онова за X" (H1 carries the name too), pitch, status, type, owner, one primary CTA (only links that exist).
 2. Cover screenshot in its frame (phone, browser, bare) on the project's colour.
-3. **За какво ти е**: 2 to 4 concrete situations.
-4. **Защо го направих** (own) or **Задачата** (client): 25 to 130 words, one honest limit.
-5. More screens with captions.
-6. **Къде е сега**: honest state.
-7. **Още онова за...**: 3 related projects.
+3. **За какво ти е**: what it is and the problem it solves, 20 to 70 words.
+4. More screens with captions.
+5. **Още онова за...**: 3 related projects.
 
 ## 5. SEO
 

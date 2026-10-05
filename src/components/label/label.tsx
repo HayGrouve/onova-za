@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { type ReactNode, ViewTransition } from 'react'
 
-import { STATUSES } from '@/content/taxonomy'
 import { accent } from '@/lib/accent'
 import { paths } from '@/lib/paths'
 import type { Project } from '@/lib/project-schema'
@@ -19,12 +18,10 @@ const SHOT_SIZES: Record<Project['cover']['frame'], string> = {
 }
 
 export function Tags({ project: p }: { project: Project }) {
+  if (p.owner !== 'client') return null
   return (
     <div className={styles.tags}>
-      {p.owner === 'client' && (
-        <span className={`${styles.chip} ${styles.chipInk}`}>За клиент</span>
-      )}
-      <span className={styles.chip}>{STATUSES[p.status].label}</span>
+      <span className={`${styles.chip} ${styles.chipInk}`}>За клиент</span>
     </div>
   )
 }
@@ -111,7 +108,7 @@ export function NeutralLabel({
   pitch,
 }: {
   href: Route
-  noun: ReactNode
+  noun: string
   name: string
   pitch: string
 }) {
@@ -134,16 +131,6 @@ export function NeutralLabel({
         </div>
       </div>
     </li>
-  )
-}
-
-// A blank to fill in: "онова за ____".
-export function Blank({ label }: { label: string }) {
-  return (
-    <>
-      <span className="sr-only">{label}</span>
-      <span className={styles.blank} aria-hidden="true" />
-    </>
   )
 }
 
