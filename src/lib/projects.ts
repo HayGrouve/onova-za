@@ -1,6 +1,7 @@
 import 'server-only'
 
 import { registry } from '@/content/registry'
+import { TECH } from '@/content/taxonomy'
 
 import { type Project, projectSchema } from './project-schema'
 
@@ -79,4 +80,12 @@ export function yearsLabel(p: Project) {
   const { from, to } = p.years
   if (!to) return `от ${from}`
   return from === to ? String(from) : `${from}-${to}`
+}
+
+// The main technologies, for the one-line stack in nerd mode.
+export function stackLine(p: Project, limit = 3) {
+  return p.stack
+    .slice(0, limit)
+    .map((s) => TECH[s.tech].name)
+    .join(', ')
 }

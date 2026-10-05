@@ -7,6 +7,7 @@ import { Inline } from '@/components/inline'
 import { JsonLd } from '@/components/json-ld'
 import { Label, Wall } from '@/components/label/label'
 import { Masthead } from '@/components/label/masthead'
+import { NerdOnButton } from '@/components/nerd/nerd'
 import { Actions } from '@/components/project/actions'
 import { Facts } from '@/components/project/facts'
 import { ShotFigure } from '@/components/project/shot'
@@ -40,14 +41,16 @@ export async function generateMetadata({
 function Section({
   id,
   title,
+  mode,
   children,
 }: {
   id: string
   title: string
+  mode?: 'nerd'
   children: ReactNode
 }) {
   return (
-    <section aria-labelledby={id} className="scroll-mt-6">
+    <section aria-labelledby={id} className="scroll-mt-6" data-mode={mode}>
       <h2
         id={id}
         className="font-display text-[clamp(1.875rem,3vw,2.375rem)] leading-none font-extrabold tracking-[-0.005em]"
@@ -175,13 +178,22 @@ export default async function ProjectPage({
             </div>
           )}
 
-          <Section id="kak" title="Как е направено">
+          {/* Plain mode keeps a way in where the nerd sections would be, so
+              turning the mode on opens them in place. */}
+          <p className="text-muted-foreground" data-mode="plain">
+            {p.client
+              ? 'Как е направено и коя част е моя: '
+              : 'Как е направено и с какво: '}
+            <NerdOnButton>в нърд режима</NerdOnButton>.
+          </p>
+
+          <Section id="kak" title="Как е направено" mode="nerd">
             <List items={p.body.how} />
             <Stack project={p} />
           </Section>
 
           {p.client && (
-            <Section id="moyata-chast" title="Моята част">
+            <Section id="moyata-chast" title="Моята част" mode="nerd">
               <p>
                 <Inline text={p.client.role} />
               </p>

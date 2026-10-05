@@ -6,6 +6,7 @@ import { type ReactNode, ViewTransition } from 'react'
 import { STATUSES } from '@/content/taxonomy'
 import { accent } from '@/lib/accent'
 import { paths } from '@/lib/paths'
+import { stackLine } from '@/lib/projects'
 import type { Project } from '@/lib/project-schema'
 
 import styles from './label.module.css'
@@ -63,6 +64,10 @@ export function Label({
             </Link>
           </p>
           <p className={styles.pitch}>{p.pitch}</p>
+          <p className={styles.stack} data-mode="nerd">
+            <span className="sr-only">Направено с: </span>
+            {stackLine(p)}
+          </p>
         </div>
       </div>
       {size === 'featured' && (

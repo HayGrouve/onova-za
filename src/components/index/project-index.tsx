@@ -1,11 +1,11 @@
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
 import Link from 'next/link'
 
-import { STATUSES, TECH, TYPES } from '@/content/taxonomy'
+import { STATUSES, TYPES } from '@/content/taxonomy'
 import { accent } from '@/lib/accent'
 import { paths } from '@/lib/paths'
 import type { Project } from '@/lib/project-schema'
-import { yearsLabel } from '@/lib/projects'
+import { stackLine, yearsLabel } from '@/lib/projects'
 
 import styles from './project-index.module.css'
 
@@ -30,12 +30,9 @@ function Row({ project: p }: { project: Project }) {
         )}
         {p.pitch}
       </p>
-      <p className={styles.stack}>
+      <p className={styles.stack} data-mode="nerd">
         <span className="sr-only">Направено с: </span>
-        {p.stack
-          .slice(0, 3)
-          .map((s) => TECH[s.tech].name)
-          .join(', ')}
+        {stackLine(p)}
       </p>
       <dl className={styles.facts}>
         <div>

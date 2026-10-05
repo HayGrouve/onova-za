@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 
+import { NerdScript } from '@/components/nerd/nerd-script'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { fontVariables } from '@/lib/fonts'
@@ -37,6 +38,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="bg" className={fontVariables} suppressHydrationWarning>
+      <head>
+        <NerdScript />
+      </head>
       <body className="flex min-h-dvh flex-col">
         <a
           href="#main"

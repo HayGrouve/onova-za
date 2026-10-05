@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { JsonLd } from '@/components/json-ld'
+import { NerdOnButton } from '@/components/nerd/nerd'
 import { buttonVariants } from '@/components/ui/button'
 import { paths } from '@/lib/paths'
 import { projects } from '@/lib/projects'
@@ -73,7 +74,15 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <section aria-labelledby="rabota" className="mt-14">
+        <p
+          className="text-muted-foreground mt-14 text-[1.0625rem]"
+          data-mode="plain"
+        >
+          Къде съм работил и с какво правя проектите:{' '}
+          <NerdOnButton>в нърд режима</NerdOnButton>.
+        </p>
+
+        <section aria-labelledby="rabota" className="mt-14" data-mode="nerd">
           <h2 id="rabota" className={h2}>
             Работа
           </h2>

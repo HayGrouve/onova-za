@@ -84,3 +84,50 @@ test('the skip link moves focus to the main content', async ({
   await page.keyboard.press('Enter')
   await expect(page).toHaveURL(/#main$/)
 })
+
+test.describe('нърд режим', () => {
+  const how = (page: Page) =>
+    page.getByRole('heading', { name: 'Как е направено' })
+  const toggle = (page: Page) =>
+    page.getByRole('switch', { name: 'Нърд режим' })
+
+  test('is off by default and hides the tech details', async ({ page }) => {
+    await page.goto('/proekti/onova-za-smetkata')
+    await expect(toggle(page)).not.toBeChecked()
+    await expect(how(page)).toBeHidden()
+    await expect(
+      page.getByRole('link', { name: 'Кодът в GitHub' }),
+    ).toBeHidden()
+  })
+
+  test('turns on from the header and survives a reload', async ({ page }) => {
+    await page.goto('/proekti/onova-za-smetkata')
+    await toggle(page).click()
+    await expect(how(page)).toBeVisible()
+    await expect(
+      page.getByRole('link', { name: 'Кодът в GitHub' }),
+    ).toBeVisible()
+
+    await page.reload()
+    await expect(toggle(page)).toBeChecked()
+    await expect(how(page)).toBeVisible()
+
+    await toggle(page).click()
+    await expect(how(page)).toBeHidden()
+  })
+
+  test('turns on from a link with ?nerd=1', async ({ page }) => {
+    await page.goto('/za-men?nerd=1')
+    await expect(page.getByRole('heading', { name: 'Работа' })).toBeVisible()
+    await page.goto('/za-men')
+    await expect(page.getByRole('heading', { name: 'Работа' })).toBeVisible()
+  })
+
+  test('passes axe with the details shown', async ({ page }) => {
+    await page.goto('/proekti/iliaora?nerd=1')
+    const results = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+      .analyze()
+    expect(results.violations.map((v) => `${v.id}: ${v.help}`)).toEqual([])
+  })
+})

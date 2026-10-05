@@ -17,15 +17,22 @@ const OPEN: Record<Project['type'], string> = {
 
 const base = 'h-11 w-full justify-between gap-3 px-4 text-base font-semibold'
 
-// Only links that exist. When there are none, say why instead of showing
-// dead buttons.
+// Only links that exist. When a visitor has nothing to open, say why instead
+// of showing dead buttons. The code link is for nerd mode only.
 export function Actions({ project: p }: { project: Project }) {
   const { live, github, download } = p.links
-  if (!live && !github && !download) {
-    return <p className="text-muted-foreground">{noLinkReason(p)}</p>
-  }
+  const reason = !live && !download && (
+    <p
+      className="text-muted-foreground"
+      data-mode={github ? 'plain' : undefined}
+    >
+      {noLinkReason(p)}
+    </p>
+  )
+  if (!live && !github && !download) return reason
   return (
     <div className="flex flex-col gap-2">
+      {reason}
       {live && (
         <a href={live} className={cn(buttonVariants(), base)}>
           {OPEN[p.type]}
@@ -47,6 +54,7 @@ export function Actions({ project: p }: { project: Project }) {
       {github && (
         <a
           href={github}
+          data-mode="nerd"
           className={cn(buttonVariants({ variant: 'outline' }), base)}
         >
           Кодът в GitHub
