@@ -133,14 +133,6 @@
   }
 }
 
-/* Нърд режим. Pages render both versions; <html data-nerd> (set before the
-   first paint, see components/nerd) decides which shows. Unlayered on
-   purpose, so it wins over Tailwind's display utilities. */
-:root:not([data-nerd]) [data-mode='nerd'],
-:root[data-nerd] [data-mode='plain'] {
-  display: none;
-}
-
 /* The page column. One width for every page. */
 @utility shell {
   width: 100%;

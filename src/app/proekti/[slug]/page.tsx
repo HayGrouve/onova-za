@@ -7,14 +7,11 @@ import { Inline } from '@/components/inline'
 import { JsonLd } from '@/components/json-ld'
 import { Label, Wall } from '@/components/label/label'
 import { Masthead } from '@/components/label/masthead'
-import { NerdOnButton } from '@/components/nerd/nerd'
 import { Actions } from '@/components/project/actions'
 import { Facts } from '@/components/project/facts'
 import { ShotFigure } from '@/components/project/shot'
-import { TECH } from '@/content/taxonomy'
 import { accent } from '@/lib/accent'
 import { paths } from '@/lib/paths'
-import type { Project } from '@/lib/project-schema'
 import { getProject, projects, relatedTo } from '@/lib/projects'
 import { pageMeta, projectGraph, projectTitle } from '@/lib/seo'
 
@@ -41,16 +38,14 @@ export async function generateMetadata({
 function Section({
   id,
   title,
-  mode,
   children,
 }: {
   id: string
   title: string
-  mode?: 'nerd'
   children: ReactNode
 }) {
   return (
-    <section aria-labelledby={id} className="scroll-mt-6" data-mode={mode}>
+    <section aria-labelledby={id} className="scroll-mt-6">
       <h2
         id={id}
         className="font-display text-[clamp(1.875rem,3vw,2.375rem)] leading-none font-extrabold tracking-[-0.005em]"
@@ -76,24 +71,6 @@ function List({ items }: { items: readonly string[] }) {
         </li>
       ))}
     </ul>
-  )
-}
-
-function Stack({ project: p }: { project: Project }) {
-  return (
-    <dl className="border-border mt-6 border-t">
-      {p.stack.map(({ tech, why }) => (
-        <div
-          key={tech}
-          className="border-border grid gap-x-6 gap-y-1 border-b py-3 sm:grid-cols-[10rem_minmax(0,1fr)]"
-        >
-          <dt className="font-semibold">{TECH[tech].name}</dt>
-          <dd className="text-muted-foreground">
-            {why ? <Inline text={why} /> : null}
-          </dd>
-        </div>
-      ))}
-    </dl>
   )
 }
 
@@ -176,33 +153,6 @@ export default async function ProjectPage({
                 <ShotFigure key={shot.alt} shot={shot} />
               ))}
             </div>
-          )}
-
-          {/* Plain mode keeps a way in where the nerd sections would be, so
-              turning the mode on opens them in place. */}
-          <p className="text-muted-foreground" data-mode="plain">
-            {p.client
-              ? 'Как е направено и коя част е моя: '
-              : 'Как е направено и с какво: '}
-            <NerdOnButton>в нърд режима</NerdOnButton>.
-          </p>
-
-          <Section id="kak" title="Как е направено" mode="nerd">
-            <List items={p.body.how} />
-            <Stack project={p} />
-          </Section>
-
-          {p.client && (
-            <Section id="moyata-chast" title="Моята част" mode="nerd">
-              <p>
-                <Inline text={p.client.role} />
-              </p>
-              {p.client.notMine && (
-                <p className="text-muted-foreground">
-                  <Inline text={p.client.notMine} />
-                </p>
-              )}
-            </Section>
           )}
 
           <Section id="sega" title="Къде е сега">

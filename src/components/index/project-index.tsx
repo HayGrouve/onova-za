@@ -5,7 +5,7 @@ import { STATUSES, TYPES } from '@/content/taxonomy'
 import { accent } from '@/lib/accent'
 import { paths } from '@/lib/paths'
 import type { Project } from '@/lib/project-schema'
-import { stackLine, yearsLabel } from '@/lib/projects'
+import { yearsLabel } from '@/lib/projects'
 
 import styles from './project-index.module.css'
 
@@ -29,10 +29,6 @@ function Row({ project: p }: { project: Project }) {
           <span className={styles.name}>{p.name}. </span>
         )}
         {p.pitch}
-      </p>
-      <p className={styles.stack} data-mode="nerd">
-        <span className="sr-only">Направено с: </span>
-        {stackLine(p)}
       </p>
       <dl className={styles.facts}>
         <div>

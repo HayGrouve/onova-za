@@ -57,13 +57,13 @@ export default function HomePage() {
             href={paths.projects()}
             noun="всичко"
             name="Всички проекти"
-            pitch="Целият списък в една таблица: вид, статус, години и адрес."
+            pitch="Целият списък на едно място."
           />
           <NeutralLabel
             href={paths.contact()}
             noun={<Blank label="твоето нещо" />}
             name="Пиши ми"
-            pitch="Имаш идея или поръчка? Разкажи ми за какво е."
+            pitch="Имаш идея или поръчка?"
           />
         </Wall>
       </section>

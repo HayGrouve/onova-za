@@ -1,7 +1,7 @@
 import type { StaticImageData } from 'next/image'
 import { z } from 'zod'
 
-import { OWNERS, STATUSES, TECH, TOPICS, TYPES } from '@/content/taxonomy'
+import { OWNERS, STATUSES, TOPICS, TYPES } from '@/content/taxonomy'
 
 const keys = <T extends object>(o: T) =>
   Object.keys(o) as [Extract<keyof T, string>, ...Extract<keyof T, string>[]]
@@ -52,15 +52,7 @@ export const projectSchema = z
     // Meta description and structured-data description.
     description: z.string().min(70).max(165),
     owner: z.enum(keys(OWNERS)),
-    client: z
-      .object({
-        name: z.string(),
-        // What I did, in the first person. Honest scope.
-        role: inline,
-        // What I did not do, when it matters (design, content, photos...).
-        notMine: inline.optional(),
-      })
-      .optional(),
+    client: z.object({ name: z.string() }).optional(),
     type: z.enum(keys(TYPES)),
     status: z.enum(keys(STATUSES)),
     topics: z
@@ -81,9 +73,6 @@ export const projectSchema = z
         download: httpsUrl.optional(),
       })
       .default({}),
-    stack: z
-      .array(z.object({ tech: z.enum(keys(TECH)), why: inline.optional() }))
-      .min(1),
     featured: z.boolean().default(false),
     // Accent hue (OKLCH degrees). Lightness and chroma come from the theme so
     // contrast holds for every hue. Keep hues 270 to 320 out.
@@ -99,8 +88,6 @@ export const projectSchema = z
       useCases: z.array(inline).min(1).max(4),
       // "Защо го направих" (own) or "Задачата" (client). 30 to 120 words.
       why: inline,
-      // "Как е направено": notable decisions, not a tech list.
-      how: z.array(inline).min(1).max(5),
       // One honest limit or thing I would change.
       limits: inline.optional(),
       // Where it stands today.
@@ -129,7 +116,7 @@ export const projectSchema = z
       ctx.addIssue({
         code: 'custom',
         path: ['client'],
-        message: 'Client details are required for client work, and only then',
+        message: 'The client name is required for client work, and only then',
       })
     }
     if (p.years.to && p.years.to < p.years.from) {

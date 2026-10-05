@@ -31,10 +31,6 @@ The order in `src/content/registry.ts` is the order on the wall. `featured: true
 
 Slugs use the official Bulgarian transliteration (`kuhnyata`, not `kuhnqta`); a product's own Latin name wins (`dial-in`).
 
-## Нърд режим
-
-A header switch, off by default. Off shows the plain library; on adds the stack, how each project is made, code links, my part in client work and work history. It is a client preference on static pages (no cookies, no dynamic rendering): both versions are in the HTML, `data-mode="nerd"` / `data-mode="plain"` mark them, and an inline script in `<head>` sets `<html data-nerd>` from localStorage before the first paint. Share `https://onova-za.com/?nerd=1` to open the site with it on.
-
 ## Docs
 
 - `CONTEXT.md`: glossary

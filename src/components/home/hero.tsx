@@ -47,13 +47,8 @@ export function Hero({ projects }: { projects: readonly Project[] }) {
           ))}
         </span>
       </h1>
-      <p className={styles.lede} data-mode="plain">
-        „Онова за“ казваш, когато забравиш името, но помниш за какво е.
-        Приложения и сайтове на {site.author.name}, уеб разработчик.
-      </p>
-      <p className={styles.lede} data-mode="nerd">
-        {site.author.name}, full-stack уеб разработчик от {site.author.city}.
-        Всеки проект е с технологиите, кода и моята роля в него.
+      <p className={styles.lede}>
+        Приложения и сайтове от {site.author.name}. Всяко е за нещо.
       </p>
     </section>
   )

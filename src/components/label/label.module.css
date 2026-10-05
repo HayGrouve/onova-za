@@ -114,16 +114,6 @@
   line-height: 1.35;
 }
 
-/* Nerd mode only: the main technologies, set like a parts list. */
-.stack {
-  margin: 0.5rem 0 0;
-  padding-top: 0.5rem;
-  border-top: 1px solid var(--rule);
-  font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.8125rem;
-  line-height: 1.35;
-}
-
 /* One link per label: the name is the link, its pseudo-element covers the
    whole label, and the focus ring is drawn there (rectangular). */
 .link {
@@ -238,15 +228,6 @@
     margin-top: 0;
     padding-top: 1rem;
     max-width: 15rem;
-  }
-  /* The screenshot owns the bottom right, so the stack sits bottom left. */
-  .label[data-size='featured'] .stack {
-    position: absolute;
-    left: var(--pad-x);
-    bottom: 1.25rem;
-    max-width: 28cqw;
-    padding-top: 0;
-    border-top: 0;
   }
   .label[data-size='featured'] .shot[data-frame='phone'] {
     top: auto;

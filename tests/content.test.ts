@@ -96,7 +96,7 @@ describe('project schema', () => {
   })
 
   it('rejects client details on own work', () => {
-    const broken = { ...valid, client: { name: 'X', role: 'Всичко' } }
+    const broken = { ...valid, client: { name: 'X' } }
     expect(projectSchema.safeParse(broken).success).toBe(false)
   })
 

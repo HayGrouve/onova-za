@@ -1,8 +1,4 @@
-import {
-  ArrowUpRight,
-  DownloadSimple,
-  GithubLogo,
-} from '@phosphor-icons/react/dist/ssr'
+import { ArrowUpRight, DownloadSimple } from '@phosphor-icons/react/dist/ssr'
 
 import { buttonVariants } from '@/components/ui/button'
 import type { Project } from '@/lib/project-schema'
@@ -17,22 +13,15 @@ const OPEN: Record<Project['type'], string> = {
 
 const base = 'h-11 w-full justify-between gap-3 px-4 text-base font-semibold'
 
-// Only links that exist. When a visitor has nothing to open, say why instead
-// of showing dead buttons. The code link is for nerd mode only.
+// Only links that exist. When there is nothing to open, say why instead of
+// showing dead buttons.
 export function Actions({ project: p }: { project: Project }) {
-  const { live, github, download } = p.links
-  const reason = !live && !download && (
-    <p
-      className="text-muted-foreground"
-      data-mode={github ? 'plain' : undefined}
-    >
-      {noLinkReason(p)}
-    </p>
-  )
-  if (!live && !github && !download) return reason
+  const { live, download } = p.links
+  if (!live && !download) {
+    return <p className="text-muted-foreground">{noLinkReason(p)}</p>
+  }
   return (
     <div className="flex flex-col gap-2">
-      {reason}
       {live && (
         <a href={live} className={cn(buttonVariants(), base)}>
           {OPEN[p.type]}
@@ -49,16 +38,6 @@ export function Actions({ project: p }: { project: Project }) {
         >
           Изтегли
           <DownloadSimple size={20} weight="bold" aria-hidden="true" />
-        </a>
-      )}
-      {github && (
-        <a
-          href={github}
-          data-mode="nerd"
-          className={cn(buttonVariants({ variant: 'outline' }), base)}
-        >
-          Кодът в GitHub
-          <GithubLogo size={20} weight="bold" aria-hidden="true" />
         </a>
       )}
     </div>

@@ -43,7 +43,6 @@ export default defineProject({
   years: { from: ${year} },
   updatedAt: '${today}',
   links: {},
-  stack: [{ tech: 'next' }],
   hue: 200,
   cover: {
     src: cover,
@@ -53,7 +52,6 @@ export default defineProject({
   body: {
     useCases: ['TODO: ситуация, в която това ти помага.'],
     why: 'TODO: защо съществува. Моментът, който те дразнеше, защо готовите решения не ставаха и какво нарочно остави настрана. Между 25 и 130 думи, с твоите думи.',
-    how: ['TODO: **едно решение, което си струва да се разкаже.** И защо.'],
     state: 'TODO: къде е сега.',
   },
 })
