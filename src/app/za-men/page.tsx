@@ -46,12 +46,6 @@ export default function AboutPage() {
             <dfn className="font-display text-[1.6em] leading-none font-extrabold not-italic">
               онова за
             </dfn>{' '}
-            <abbr
-              title="разговорно"
-              className="text-muted-foreground no-underline"
-            >
-              разг.
-            </abbr>{' '}
             Каквото казваш, когато не помниш как се казва нещо, но знаеш за
             какво е.
           </p>
