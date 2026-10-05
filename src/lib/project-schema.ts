@@ -90,8 +90,6 @@ export const projectSchema = z
       why: inline,
       // One honest limit or thing I would change.
       limits: inline.optional(),
-      // Where it stands today.
-      state: inline,
     }),
     related: z.array(slug).max(3).optional(),
     seo: z

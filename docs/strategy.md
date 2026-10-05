@@ -49,8 +49,7 @@ Cards show only filterable facets: status and the client tag. Never tech stacks 
 3. **За какво ти е**: 2 to 4 concrete situations.
 4. **Защо го направих** (own) or **Задачата** (client): 25 to 130 words, one honest limit.
 5. More screens with captions.
-6. **Къде е сега**: honest state.
-7. **Още онова за...**: 3 related projects.
+6. **Още онова за...**: 3 related projects.
 
 ## 5. SEO
 

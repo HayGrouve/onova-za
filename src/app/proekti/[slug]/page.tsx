@@ -154,12 +154,6 @@ export default async function ProjectPage({
               ))}
             </div>
           )}
-
-          <Section id="sega" title="Къде е сега">
-            <p>
-              <Inline text={p.body.state} />
-            </p>
-          </Section>
         </article>
       </div>
 

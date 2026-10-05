@@ -34,8 +34,10 @@ export default function ProjectsPage() {
           Всички проекти
         </h1>
         <p className="text-muted-foreground mt-4 max-w-xl text-lg">
-          {count(stats.total)} от {since} насам: {stats.own} мои и{' '}
-          {stats.client} за клиенти.
+          {count(stats.total)} от {since} насам
+          {stats.client > 0
+            ? `: ${stats.own} мои и ${stats.client} за клиенти.`
+            : '.'}
         </p>
       </header>
 
