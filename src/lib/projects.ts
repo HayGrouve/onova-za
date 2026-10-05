@@ -68,13 +68,6 @@ export function relatedTo(project: Project, limit = 3): Project[] {
   return [...picked, ...rest].slice(0, limit)
 }
 
-export const stats = {
-  total: projects.length,
-  live: projects.filter((p) => p.status === 'live').length,
-  own: ownProjects.length,
-  client: clientProjects.length,
-}
-
 export function yearsLabel(p: Project) {
   const { from, to } = p.years
   if (!to) return `от ${from}`
