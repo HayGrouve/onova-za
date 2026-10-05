@@ -3,7 +3,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { JsonLd } from '@/components/json-ld'
-import { NerdOnButton } from '@/components/nerd/nerd'
 import { buttonVariants } from '@/components/ui/button'
 import { paths } from '@/lib/paths'
 import { projects } from '@/lib/projects'
@@ -15,7 +14,7 @@ export const metadata: Metadata = pageMeta({
   path: paths.about(),
   title: `За мен: ${site.author.name}, уеб разработчик`,
   description:
-    'Цветомир Цеков, уеб разработчик от София. Защо проектите ми се казват „онова за“, къде съм работил и как да ми пишеш.',
+    'Цветомир Цеков, уеб разработчик от София. Защо проектите ми се казват „онова за“ и как да ми пишеш.',
 })
 
 // The newest project update doubles as the page's own "last modified".
@@ -63,10 +62,8 @@ export default function AboutPage() {
 
         <div className="mt-10 space-y-4 text-[1.0625rem] leading-relaxed">
           <p>
-            Така кръщавам и проектите си. Името на едно приложение се забравя, а
-            това, за какво е, остава: онова за сметката, онова за кухнята, онова
-            за кафето. Тук са всичките, заедно със сайтовете, които съм правил
-            за клиенти.{' '}
+            Така кръщавам и проектите си. Името се забравя, а за какво е,
+            остава: онова за сметката, онова за кафето.{' '}
             <Link href={paths.projects()} className="link-prose">
               Виж всички проекти
             </Link>
@@ -74,38 +71,12 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <p
-          className="text-muted-foreground mt-14 text-[1.0625rem]"
-          data-mode="plain"
-        >
-          Къде съм работил и с какво правя проектите:{' '}
-          <NerdOnButton>в нърд режима</NerdOnButton>.
-        </p>
-
-        <section aria-labelledby="rabota" className="mt-14" data-mode="nerd">
-          <h2 id="rabota" className={h2}>
-            Работа
-          </h2>
-          <div className="mt-4 space-y-4 text-[1.0625rem] leading-relaxed">
-            <p>
-              Пиша код за уеба от 2020 г. Работил съм в Nemetschek по дигитални
-              учебници за деца, в Devexperts по платформа за инвестиции и в
-              ScaleHub по интерфейси за разпознаване на документи с AI. От 2026
-              г. съм в ZETTAHOST.bg и работя по онлайн банкиране.
-            </p>
-            <p>
-              Най-често започвам с Next.js или TanStack Start, Convex, Clerk и
-              Vercel. Подробностите за всеки проект са на страницата му.
-            </p>
-          </div>
-        </section>
-
         <section aria-labelledby="pishi-mi" className="mt-14 scroll-mt-6">
           <h2 id="pishi-mi" className={h2}>
             Пиши ми
           </h2>
           <p className="mt-4 text-[1.0625rem] leading-relaxed">
-            Имаш идея, поръчка или работа за уеб разработчик? Пиши ми на имейл.
+            Имаш идея или поръчка? Пиши ми.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             <a

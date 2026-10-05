@@ -40,7 +40,7 @@ Discovery scales by count, from the same data: none under 15 projects; status/ow
 | Type   | app: Приложение, site: Сайт, system: Система, desktop: Десктоп               |
 | Topic  | internal only (related projects, later topic pages)                          |
 
-Cards show only filterable facets: status and the client tag. Never tech stacks or dates.
+Cards show only filterable facets: status and the client tag. Never tech stacks or dates. The site has no tech layer at all: no stacks, no code links, no work history. Projects are described by what they are for.
 
 ## 4. Project page anatomy
 
@@ -49,10 +49,8 @@ Cards show only filterable facets: status and the client tag. Never tech stacks 
 3. **За какво ти е**: 2 to 4 concrete situations.
 4. **Защо го направих** (own) or **Задачата** (client): 25 to 130 words, one honest limit.
 5. More screens with captions.
-6. **Как е направено**: 3 or 4 decisions in plain words, then the stack as a short list with a "why" only where it adds something.
-7. **Къде е сега**: honest state.
-8. Client block (client work): client, my role, what was not mine.
-9. **Още онова за...**: 3 related projects.
+6. **Къде е сега**: honest state.
+7. **Още онова за...**: 3 related projects.
 
 ## 5. SEO
 

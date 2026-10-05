@@ -27,7 +27,7 @@ _Avoid_: portfolio, dashboard, feed
 `/proekti`, the dense table of every project with status, type, years and domain.
 
 **Чие** (`owner`):
-`own` (Мое) or `client` (За клиент). Client work always carries the client block: client, my role, what was not mine.
+`own` (Мое) or `client` (За клиент). Client work always names the client.
 
 **Статус** (`status`):
 `live` (На живо), `building` (В правене), `experiment` (Експеримент), `archived` (Архив). Always shown as a word, never colour alone.
@@ -41,7 +41,3 @@ Internal grouping used for related projects and, once a topic has 3+ projects, t
 **Цвят** (`hue`):
 The project's OKLCH hue. Lightness and chroma come from the theme, so any hue outside 270 to 320 passes contrast.
 _Avoid_: brand colour (the hub does not copy each product's palette)
-
-**Нърд режим** (nerd mode):
-A visitor preference, off by default. Off is the plain library: what each project is for, how to open it, why it exists. On adds the CV layer: stack on every label, "Как е направено", the code link, "Моята част" on client work, and work history on About. Pages render both and `<html data-nerd>` picks one; mark nerd-only markup with `data-mode="nerd"` and its plain stand-in with `data-mode="plain"`. `?nerd=1` in a link turns it on (for a CV or LinkedIn link).
-_Avoid_: dev mode, advanced view

@@ -11,10 +11,7 @@ export default defineProject({
   description:
     'Сайт за коминочистач в София: почистване, отпушване и ремонт на комини и шапки, с галерия от обекти и бутон за обаждане.',
   owner: 'client',
-  client: {
-    name: 'Коминочистач, София',
-    role: 'Първата версия през 2020 и пълното ѝ пренаписване през 2026: код, дизайн и SEO.',
-  },
+  client: { name: 'Коминочистач, София' },
   type: 'site',
   status: 'live',
   topics: ['dom', 'biznes'],
@@ -22,12 +19,6 @@ export default defineProject({
   updatedAt: '2026-09-25',
   seo: { title: 'Коминочистач: сайт за почистване на комини' },
   links: { live: 'https://komini-sofia.com' },
-  stack: [
-    { tech: 'react' },
-    { tech: 'vite' },
-    { tech: 'shadcn' },
-    { tech: 'netlify' },
-  ],
   hue: 50,
   cover: {
     src: home,
@@ -48,11 +39,6 @@ export default defineProject({
       'Телефонът е на първия екран, на всеки размер на екрана.',
     ],
     why: 'Сайтът започна през 2020 като Create React App с Bootstrap и стоя без промяна години наред. През 2026 го пренаписах за седмица: Vite, React 19, TypeScript и нов дизайн. Целта не се промени: човек със запушен комин да намери телефона за секунди.',
-    how: [
-      '**Миграция, не нов проект.** Махнах всичко от Create React App, Bootstrap и jQuery и преписах страниците една по една.',
-      '**SEO в статичен сайт**: данни за местен бизнес, canonical и OG за всяка страница, sitemap и пренасочване на Netlify.',
-      '**Галерията е данни**: 21 снимки с описание за незрящи в един файл, показани в lightbox.',
-    ],
     state: 'Работи на живо. Обновен през септември 2026.',
   },
   related: ['stefi-auto-gas', 'a-el-key'],

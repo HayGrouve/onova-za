@@ -46,30 +46,3 @@ export const TOPICS = {
   dom: 'дом',
   biznes: 'малък бизнес',
 } as const
-
-export const TECH = {
-  next: { name: 'Next.js', url: 'https://nextjs.org' },
-  'tanstack-start': {
-    name: 'TanStack Start',
-    url: 'https://tanstack.com/start',
-  },
-  react: { name: 'React', url: 'https://react.dev' },
-  vite: { name: 'Vite', url: 'https://vite.dev' },
-  cra: { name: 'Create React App' },
-  convex: { name: 'Convex', url: 'https://convex.dev' },
-  clerk: { name: 'Clerk', url: 'https://clerk.com' },
-  stripe: { name: 'Stripe', url: 'https://stripe.com' },
-  tauri: { name: 'Tauri', url: 'https://tauri.app' },
-  rust: { name: 'Rust', url: 'https://www.rust-lang.org' },
-  tailwind: { name: 'Tailwind CSS', url: 'https://tailwindcss.com' },
-  shadcn: { name: 'shadcn/ui', url: 'https://ui.shadcn.com' },
-  dexie: { name: 'Dexie (IndexedDB)', url: 'https://dexie.org' },
-  gemini: { name: 'Gemini API', url: 'https://ai.google.dev' },
-  uploadthing: { name: 'UploadThing', url: 'https://uploadthing.com' },
-  redis: { name: 'Redis' },
-  jspdf: { name: 'jsPDF' },
-  playwright: { name: 'Playwright', url: 'https://playwright.dev' },
-  pwa: { name: 'PWA' },
-  vercel: { name: 'Vercel', url: 'https://vercel.com' },
-  netlify: { name: 'Netlify', url: 'https://www.netlify.com' },
-} as const

@@ -12,7 +12,7 @@ export const metadata: Metadata = pageMeta({
   path: paths.projects(),
   title: 'Всички проекти',
   description:
-    'Всички приложения и сайтове на едно място: какво прави всяко, дали работи, от кога е и къде живее.',
+    'Всички приложения и сайтове на едно място: какво прави всяко, дали работи и от кога е.',
 })
 
 const since = Math.min(...projects.map((p) => p.years.from))
@@ -35,8 +35,7 @@ export default function ProjectsPage() {
         </h1>
         <p className="text-muted-foreground mt-4 max-w-xl text-lg">
           {count(stats.total)} от {since} насам: {stats.own} мои и{' '}
-          {stats.client} за клиенти. Какво прави всеки, дали работи и къде
-          живее.
+          {stats.client} за клиенти.
         </p>
       </header>
 
