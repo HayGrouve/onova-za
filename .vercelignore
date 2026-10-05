@@ -1,0 +1,5 @@
+# Raw captures from the project inventory: not used by the site and some
+# show private details. Never upload them.
+/public/projects
+/test-results
+/playwright-report
