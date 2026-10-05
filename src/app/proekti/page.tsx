@@ -50,7 +50,9 @@ export default function ProjectsPage() {
             aria-labelledby={g.id}
             className="mt-10 first-of-type:mt-0"
           >
-            <GroupHeading id={g.id}>{g.title}</GroupHeading>
+            <GroupHeading id={g.id} only={groups.length === 1}>
+              {g.title}
+            </GroupHeading>
             <ProjectIndex projects={g.items} />
           </section>
         ))

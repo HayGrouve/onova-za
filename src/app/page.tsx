@@ -40,7 +40,9 @@ export default function HomePage() {
           aria-labelledby={g.id}
           className="mt-[clamp(2.25rem,4vw,3.25rem)]"
         >
-          <GroupHeading id={g.id}>{g.title}</GroupHeading>
+          <GroupHeading id={g.id} only={groups.length === 1}>
+            {g.title}
+          </GroupHeading>
           <ProjectWall projects={g.items} aboveFold={i === 0} />
         </section>
       ))}
