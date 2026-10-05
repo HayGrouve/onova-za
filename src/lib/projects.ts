@@ -67,9 +67,3 @@ export function relatedTo(project: Project, limit = 3): Project[] {
 
   return [...picked, ...rest].slice(0, limit)
 }
-
-export function yearsLabel(p: Project) {
-  const { from, to } = p.years
-  if (!to) return `от ${from}`
-  return from === to ? String(from) : `${from}-${to}`
-}

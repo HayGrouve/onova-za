@@ -8,9 +8,11 @@ import { Tags } from './label'
 import styles from './label.module.css'
 
 // The project's label at full size: the page header and the H1. The cover
-// stands on its bottom edge.
+// stands on its bottom edge. When the project is online, the whole label
+// opens it in a new tab.
 export function Masthead({ project: p }: { project: Project }) {
   const phone = p.cover.frame === 'phone'
+  const { live } = p.links
   return (
     <div className={`${styles.label} ${styles.masthead}`} {...accent(p.hue)}>
       <ViewTransition name={`label-${p.slug}`} share="morph" default="none">
@@ -20,7 +22,19 @@ export function Masthead({ project: p }: { project: Project }) {
               <span className={styles.phrase}>онова за</span>{' '}
               <span className={styles.noun}>{p.za}</span>
               <span className="sr-only">: </span>
-              <span className={styles.mastName}>{p.name}</span>
+              {live ? (
+                <a
+                  href={live}
+                  target="_blank"
+                  rel="noopener"
+                  className={`${styles.link} ${styles.mastName}`}
+                >
+                  <span className={styles.nameText}>{p.name}</span>
+                  <span className="sr-only"> (отваря се в нов раздел)</span>
+                </a>
+              ) : (
+                <span className={styles.mastName}>{p.name}</span>
+              )}
             </h1>
             <p className={styles.pitch}>{p.pitch}</p>
             <Tags project={p} />

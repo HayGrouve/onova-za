@@ -8,7 +8,6 @@ import { JsonLd } from '@/components/json-ld'
 import { Label, Wall } from '@/components/label/label'
 import { Masthead } from '@/components/label/masthead'
 import { Actions } from '@/components/project/actions'
-import { Facts } from '@/components/project/facts'
 import { ShotFigure } from '@/components/project/shot'
 import { accent } from '@/lib/accent'
 import { paths } from '@/lib/paths'
@@ -59,21 +58,6 @@ function Section({
   )
 }
 
-function List({ items }: { items: readonly string[] }) {
-  return (
-    <ul className="space-y-3">
-      {items.map((item) => (
-        <li
-          key={item}
-          className="before:bg-tint relative pl-5 before:absolute before:top-[0.7em] before:left-0 before:h-0.5 before:w-2.5"
-        >
-          <Inline text={item} />
-        </li>
-      ))}
-    </ul>
-  )
-}
-
 export default async function ProjectPage({
   params,
 }: PageProps<'/proekti/[slug]'>) {
@@ -109,38 +93,19 @@ export default async function ProjectPage({
       </nav>
 
       <Masthead project={p} />
-      {p.cover.caption && (
-        <p className="text-muted-foreground mt-2 text-right text-sm">
-          {p.cover.caption}
-        </p>
-      )}
 
       <div className="mt-[clamp(2rem,5vw,3.5rem)] grid gap-12 lg:grid-cols-[minmax(0,1fr)_19rem] lg:gap-16">
-        <aside
-          aria-label="Връзки и факти"
-          className="lg:col-start-2 lg:row-start-1"
-        >
+        <aside aria-label="Връзки" className="lg:col-start-2 lg:row-start-1">
           <div className="space-y-6 lg:sticky lg:top-6">
             <Actions project={p} />
-            <Facts project={p} />
           </div>
         </aside>
 
         <article className="max-w-[42rem] space-y-[clamp(2.5rem,5vw,3.5rem)] lg:col-start-1 lg:row-start-1">
           <Section id="za-kakvo" title={own ? 'За какво ти е' : 'За какво е'}>
-            <List items={p.body.useCases} />
-          </Section>
-
-          <Section id="zashto" title={own ? 'Защо го направих' : 'Задачата'}>
             <p>
-              <Inline text={p.body.why} />
+              <Inline text={p.body.about} />
             </p>
-            {p.body.limits && (
-              <p>
-                <strong className="font-semibold">Какво не прави.</strong>{' '}
-                <Inline text={p.body.limits} />
-              </p>
-            )}
           </Section>
 
           {p.screens.length > 0 && (

@@ -7,4 +7,4 @@ import dialIn from './projects/dial-in'
 import onovaZaSmetkata from './projects/onova-za-smetkata'
 import spisakZaKamping from './projects/spisak-za-kamping'
 
-export const registry = [onovaZaSmetkata, chef, dialIn, spisakZaKamping]
+export const registry = [onovaZaSmetkata, chef, spisakZaKamping, dialIn]

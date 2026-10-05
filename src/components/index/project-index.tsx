@@ -7,7 +7,7 @@ import type { Project } from '@/lib/project-schema'
 
 import styles from './project-index.module.css'
 
-export const domain = (url: string) => new URL(url).host.replace(/^www\./, '')
+const domain = (url: string) => new URL(url).host.replace(/^www\./, '')
 
 // "Онова за сметката" is both the name and the phrase: say it once.
 const nameRepeatsPhrase = (p: Project) =>
@@ -33,8 +33,14 @@ function Row({ project: p }: { project: Project }) {
           <dt className="sr-only">Адрес</dt>
           <dd>
             {p.links.live ? (
-              <a href={p.links.live} className={`${styles.address} link-prose`}>
+              <a
+                href={p.links.live}
+                target="_blank"
+                rel="noopener"
+                className={`${styles.address} link-prose`}
+              >
                 {domain(p.links.live)}
+                <span className="sr-only"> (отваря се в нов раздел)</span>
               </a>
             ) : (
               <span className={styles.muted}>без публичен адрес</span>

@@ -1,6 +1,5 @@
 import { ArrowUpRight, EnvelopeSimple } from '@phosphor-icons/react/dist/ssr'
 import type { Metadata } from 'next'
-import Link from 'next/link'
 
 import { JsonLd } from '@/components/json-ld'
 import { buttonVariants } from '@/components/ui/button'
@@ -32,45 +31,23 @@ export default function AboutPage() {
   return (
     <main id="main" className="shell">
       <JsonLd data={profileGraph(lastUpdate)} />
-      <div className="max-w-[42rem] pt-[clamp(2rem,5vw,3.5rem)]">
-        <h1 className="font-display text-[clamp(3rem,7vw,5.5rem)] leading-[0.95] font-extrabold tracking-[-0.01em]">
-          {author.name}
-        </h1>
-        <p className="mt-4 text-xl leading-snug text-pretty">
-          Уеб разработчик от София. Правя малки приложения за неща, които ме
-          дразнят, и сайтове за хора с малък бизнес.
-        </p>
-
-        <figure className="border-foreground mt-10 border-l-2 pl-5">
-          <p className="text-lg leading-relaxed">
-            <dfn className="font-display text-[1.6em] leading-none font-extrabold not-italic">
-              онова за
-            </dfn>{' '}
-            Каквото казваш, когато не помниш как се казва нещо, но знаеш за
-            какво е.
-          </p>
-          <blockquote className="font-display mt-2 text-[1.625rem] leading-tight font-bold">
-            „Дай ми онова за отваряне на бутилки.“
-          </blockquote>
-        </figure>
-
-        <div className="mt-10 space-y-4 text-[1.0625rem] leading-relaxed">
-          <p>
-            Така кръщавам и проектите си. Името се забравя, а за какво е,
-            остава: онова за сметката, онова за кафето.{' '}
-            <Link href={paths.projects()} className="link-prose">
-              Виж всички проекти
-            </Link>
-            .
+      <div className="grid gap-14 pt-[clamp(2rem,5vw,3.5rem)] lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start lg:gap-16">
+        <div className="max-w-[42rem]">
+          <h1 className="font-display text-[clamp(3rem,7vw,5.5rem)] leading-[0.95] font-extrabold tracking-[-0.01em]">
+            {author.name}
+          </h1>
+          <p className="mt-4 text-xl leading-snug text-pretty">
+            Уеб разработчик от София. Правя малки приложения за големите
+            проблеми.
           </p>
         </div>
 
-        <section aria-labelledby="pishi-mi" className="mt-14 scroll-mt-6">
+        <section aria-labelledby="pishi-mi" className="scroll-mt-6">
           <h2 id="pishi-mi" className={h2}>
             Пиши ми
           </h2>
           <p className="mt-4 text-[1.0625rem] leading-relaxed">
-            Имаш идея или поръчка? Пиши ми.
+            Имаш идея или поръчка?
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
             <a

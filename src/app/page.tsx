@@ -3,12 +3,7 @@ import type { Metadata } from 'next'
 import { GroupHeading } from '@/components/group-heading'
 import { Hero } from '@/components/home/hero'
 import { JsonLd } from '@/components/json-ld'
-import {
-  Blank,
-  NeutralLabel,
-  ProjectWall,
-  Wall,
-} from '@/components/label/label'
+import { NeutralLabel, ProjectWall, Wall } from '@/components/label/label'
 import { OWNERS } from '@/content/taxonomy'
 import { paths } from '@/lib/paths'
 import { clientProjects, ownProjects, projects } from '@/lib/projects'
@@ -63,7 +58,7 @@ export default function HomePage() {
           />
           <NeutralLabel
             href={paths.contact()}
-            noun={<Blank label="твоето нещо" />}
+            noun="твоето нещо"
             name="Пиши ми"
             pitch="Имаш идея или поръчка?"
           />

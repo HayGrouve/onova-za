@@ -1,6 +1,5 @@
 import { accent } from '@/lib/accent'
 import type { Project } from '@/lib/project-schema'
-import { site } from '@/lib/site'
 
 import styles from './hero.module.css'
 
@@ -47,9 +46,6 @@ export function Hero({ projects }: { projects: readonly Project[] }) {
           ))}
         </span>
       </h1>
-      <p className={styles.lede}>
-        Приложения и сайтове от {site.author.name}. Всяко е за нещо.
-      </p>
     </section>
   )
 }
