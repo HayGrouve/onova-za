@@ -4,7 +4,16 @@
 // within a group the order also decides the layout.
 import chef from './projects/chef'
 import dialIn from './projects/dial-in'
+import dictum from './projects/dictum'
+import onovaZaKlientite from './projects/onova-za-klientite'
 import onovaZaSmetkata from './projects/onova-za-smetkata'
 import spisakZaKamping from './projects/spisak-za-kamping'
 
-export const registry = [onovaZaSmetkata, chef, spisakZaKamping, dialIn]
+export const registry = [
+  onovaZaSmetkata,
+  chef,
+  spisakZaKamping,
+  dialIn,
+  dictum,
+  onovaZaKlientite,
+]

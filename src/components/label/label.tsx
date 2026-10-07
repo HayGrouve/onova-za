@@ -5,13 +5,13 @@ import { type ReactNode, ViewTransition } from 'react'
 
 import { accent } from '@/lib/accent'
 import { paths } from '@/lib/paths'
-import type { Project } from '@/lib/project-schema'
+import type { Project, Shot } from '@/lib/project-schema'
 
 import styles from './label.module.css'
 
 // Sizes follow the label, not the viewport: a featured label is about 600px
 // wide on desktop and the full column on a phone.
-const SHOT_SIZES: Record<Project['cover']['frame'], string> = {
+const SHOT_SIZES: Record<Shot['frame'], string> = {
   phone: '(min-width: 1280px) 256px, 168px',
   browser: '(min-width: 1280px) 440px, (min-width: 768px) 36vw, 72vw',
   bare: '(min-width: 1280px) 440px, (min-width: 768px) 36vw, 72vw',
@@ -62,7 +62,7 @@ export function Label({
           <p className={styles.pitch}>{p.pitch}</p>
         </div>
       </div>
-      {size === 'featured' && (
+      {size === 'featured' && p.cover && (
         <div className={styles.art}>
           <div className={styles.shot} data-frame={p.cover.frame}>
             <Image
