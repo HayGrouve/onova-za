@@ -7,11 +7,12 @@ import type { Project } from '@/lib/project-schema'
 import { Tags } from './label'
 import styles from './label.module.css'
 
-// The project's label at full size: the page header and the H1. The cover
-// stands on its bottom edge. When the project is online, the whole label
+// The project's label at full size: the page header and the H1. The cover,
+// when there is one, stands on its bottom edge. When the project is online, the whole label
 // opens it in a new tab.
 export function Masthead({ project: p }: { project: Project }) {
-  const phone = p.cover.frame === 'phone'
+  const { cover } = p
+  const phone = cover?.frame === 'phone'
   const { live } = p.links
   return (
     <div className={`${styles.label} ${styles.masthead}`} {...accent(p.hue)}>
@@ -39,21 +40,23 @@ export function Masthead({ project: p }: { project: Project }) {
             <p className={styles.pitch}>{p.pitch}</p>
             <Tags project={p} />
           </div>
-          <div className={styles.mastArt}>
-            <div className={styles.mastShot} data-frame={p.cover.frame}>
-              <Image
-                src={p.cover.src}
-                alt={p.cover.alt}
-                loading="eager"
-                fetchPriority="high"
-                sizes={
-                  phone
-                    ? '(min-width: 768px) 272px, 240px'
-                    : '(min-width: 1280px) 640px, (min-width: 768px) 52vw, 92vw'
-                }
-              />
+          {cover && (
+            <div className={styles.mastArt}>
+              <div className={styles.mastShot} data-frame={cover.frame}>
+                <Image
+                  src={cover.src}
+                  alt={cover.alt}
+                  loading="eager"
+                  fetchPriority="high"
+                  sizes={
+                    phone
+                      ? '(min-width: 768px) 272px, 240px'
+                      : '(min-width: 1280px) 640px, (min-width: 768px) 52vw, 92vw'
+                  }
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </ViewTransition>
     </div>

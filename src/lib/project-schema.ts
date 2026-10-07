@@ -81,7 +81,9 @@ export const projectSchema = z
       .min(0)
       .max(360)
       .refine((h) => h < 270 || h > 320, 'Hue 270 to 320 is off limits'),
-    cover: shot,
+    // Left out when the project has nothing worth a screenshot, like an app
+    // that runs from a hotkey. Its label and page header are then text only.
+    cover: shot.optional(),
     screens: z.array(shot).max(4).default([]),
     body: z.object({
       // "За какво ти е": what it is and the problem it solves. 20 to 70 words.
@@ -113,6 +115,13 @@ export const projectSchema = z
         message: 'The client name is required for client work, and only then',
       })
     }
+    if (p.featured && !p.cover) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['featured'],
+        message: 'A featured label shows the cover, so it needs one',
+      })
+    }
     if (p.years.to && p.years.to < p.years.from) {
       ctx.addIssue({
         code: 'custom',
@@ -132,7 +141,7 @@ export const projectSchema = z
 
 export type ProjectInput = z.input<typeof projectSchema>
 export type Project = z.output<typeof projectSchema>
-export type Shot = Project['cover']
+export type Shot = NonNullable<Project['cover']>
 
 // Identity helper so project files get types and autocomplete.
 export const defineProject = (p: ProjectInput) => p

@@ -392,11 +392,11 @@
 }
 
 @container (min-width: 48rem) {
-  .masthead .face {
+  .masthead .face:has(.mastArt) {
     display: grid;
     grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
   }
-  .masthead .inner {
+  .masthead .face:has(.mastArt) .inner {
     padding-right: 0;
   }
   .masthead .noun {
