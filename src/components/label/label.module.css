@@ -216,6 +216,11 @@
 /* Wide featured label: text on the left, the shot rises from the bottom
    right and is cropped by the label's edge. */
 @container (min-width: 32rem) {
+  /* As tall as two rows of the wall, even in one column, so the shot has
+     room under the text. */
+  .label[data-size='featured'] .face {
+    min-height: 28.625rem;
+  }
   .label[data-size='featured'] .art {
     position: absolute;
     inset: 0;
@@ -243,7 +248,18 @@
     bottom: 0;
     right: -5cqw;
     width: 72cqw;
+    max-width: 26rem;
     transform: translateY(16%);
+  }
+}
+
+/* In one column the label is not much wider than its text, so a phone
+   drops below a long noun. */
+@media (max-width: 47.99rem) {
+  @container (min-width: 32rem) and (max-width: 42rem) {
+    .label[data-size='featured'] .shot[data-frame='phone'] {
+      top: 9rem;
+    }
   }
 }
 
