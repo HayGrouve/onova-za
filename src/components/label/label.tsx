@@ -157,12 +157,14 @@ export function ProjectWall({
   projects: readonly Project[]
   aboveFold?: boolean
 }) {
-  // Two columns: a featured label fills two cells, a regular one fills one.
-  // With an odd total the last regular label runs full width, so the wall
-  // never ends on a hole.
-  const cells = projects.reduce((n, p) => n + (p.featured ? 2 : 1), 0)
-  const wide =
-    cells % 2 ? projects.findLast((p) => !p.featured)?.slug : undefined
+  // Two columns: featured labels pair up side by side, regular ones fill one
+  // cell. A featured or regular label left without a partner runs full width,
+  // so the wall never ends on a hole.
+  const lastOdd = (isFeatured: boolean) => {
+    const group = projects.filter((p) => p.featured === isFeatured)
+    return group.length % 2 ? group.at(-1)?.slug : undefined
+  }
+  const wide = [lastOdd(true), lastOdd(false)]
 
   let featured = 0
   return (
@@ -177,7 +179,7 @@ export function ProjectWall({
             key={p.slug}
             project={p}
             side={side}
-            wide={p.slug === wide}
+            wide={wide.includes(p.slug)}
             eager={eager}
           />
         )
