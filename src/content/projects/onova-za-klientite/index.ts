@@ -14,6 +14,7 @@ export default defineProject({
   type: 'system',
   status: 'building',
   topics: ['biznes', 'pari'],
+  featured: true,
   years: { from: 2026 },
   updatedAt: '2026-10-07',
   seo: { title: 'Онова за клиентите: клиенти, поръчки и пари' },
@@ -24,7 +25,7 @@ export default defineProject({
   cover: {
     src: today,
     frame: 'phone',
-    alt: 'Екранът „Днес“ на пробен сервиз за климатици: среща днес в 10:30, монтаж със срок утре, две напомняния и колко остава да се плати.',
+    alt: 'Екранът „Днес“ на пробна мебелна работилница: две закъснели поръчки, две със срок до 3 дни и готови, но неплатени, с остатъка за всяка.',
   },
   body: {
     about:
