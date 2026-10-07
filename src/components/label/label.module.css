@@ -229,13 +229,13 @@
     padding-top: 1rem;
     max-width: 15rem;
   }
+  /* A phone hangs from a fixed line under the rule, whatever its height,
+     and the label's bottom edge crops it. */
   .label[data-size='featured'] .shot[data-frame='phone'] {
-    top: auto;
-    bottom: 0;
+    top: 5rem;
     right: 1.5rem;
     width: 40cqw;
     max-width: 16rem;
-    transform: translateY(26%);
   }
   .label[data-size='featured'] .shot[data-frame='browser'],
   .label[data-size='featured'] .shot[data-frame='bare'] {
@@ -244,6 +244,14 @@
     right: -5cqw;
     width: 72cqw;
     transform: translateY(16%);
+  }
+}
+
+/* Full width on the two-column wall, a phone stays the size it has in half
+   a row. */
+@media (min-width: 48rem) {
+  .wall > .label[data-size='featured'][data-wide] .shot[data-frame='phone'] {
+    width: 15rem;
   }
 }
 
