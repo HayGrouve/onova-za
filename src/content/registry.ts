@@ -6,11 +6,13 @@ import chef from './projects/chef'
 import dialIn from './projects/dial-in'
 import dictum from './projects/dictum'
 import onovaZaKlientite from './projects/onova-za-klientite'
+import onovaZaImotite from './projects/onova-za-imotite'
 import onovaZaSmetkata from './projects/onova-za-smetkata'
 import spisakZaKamping from './projects/spisak-za-kamping'
 
 export const registry = [
   onovaZaSmetkata,
+  onovaZaImotite,
   chef,
   spisakZaKamping,
   dialIn,
