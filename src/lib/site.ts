@@ -1,7 +1,7 @@
-// The production origin. The domain is not registered yet, so it is read from
-// the environment and falls back to the intended one.
+// The production origin. NEXT_PUBLIC_SITE_URL can override it (e.g. for a
+// staging host); otherwise it falls back to the live domain, onovaza.com.
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://onova-za.com'
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://onovaza.com'
 ).replace(/\/$/, '')
 
 export const site = {

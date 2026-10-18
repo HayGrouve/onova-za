@@ -13,7 +13,7 @@ pnpm ci:preflight   # format, lint, types, knip, tests, production build
 pnpm test:e2e       # Playwright smoke + axe (run pnpm test:e2e:install once)
 ```
 
-`NEXT_PUBLIC_SITE_URL` sets the canonical origin (defaults to `https://onova-za.com`).
+`NEXT_PUBLIC_SITE_URL` sets the canonical origin (defaults to `https://onovaza.com`).
 
 ## Add a project
 
