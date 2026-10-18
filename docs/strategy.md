@@ -56,7 +56,7 @@ Cards show only filterable facets: status and the client tag. Never tech stacks 
 - Titles `{Име}: {какво прави} | онова за`; unique descriptions; per-page canonical (never in the root layout).
 - JSON-LD: home `WebSite` + `Person` + `Brand`; `/proekti` `CollectionPage` + `ItemList`; own app `WebPage` + `WebApplication` (RepoDeck `SoftwareApplication`); client work `WebPage` + `CreativeWork` with `creator`; `BreadcrumbList` on inner pages; About `ProfilePage`. No ratings, no Organization, no SearchAction.
 - Per-project OG images from the same fields (Sofia Sans keeps Bulgarian forms even in Satori).
-- Product domains stay canonical for tool intent; the hub page tells the project story. Links out are normal follow links with descriptive anchors.
+- Projects with sign-in live at `<name>.onovaza.com`, and `onovaza.com/<name>` 308s there ([ADR 0001](adr/0001-one-akaunt-on-onovaza-subdomains.md)); the hub page tells the project story. Links out are normal follow links with descriptive anchors.
 - Realistic goal: brand and author queries, plus a few long-tail ones. Distribution is LinkedIn, dev communities and direct sharing.
 
 ## 6. Design principles

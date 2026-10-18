@@ -38,6 +38,10 @@ _Avoid_: portfolio, dashboard, feed
 **Тема** (`topics`):
 Internal grouping used for related projects and, once a topic has 3+ projects, topic pages. Never shown on cards.
 
+**Акаунт** (account):
+One person's онова за identity, shared by every own project that has sign-in. Each project keeps its own data and its own payments.
+_Avoid_: профил, регистрация, user
+
 **Цвят** (`hue`):
 The project's OKLCH hue. Lightness and chroma come from the theme, so any hue outside 270 to 320 passes contrast.
 _Avoid_: brand colour (the hub does not copy each product's palette)
