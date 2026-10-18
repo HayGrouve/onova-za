@@ -33,7 +33,7 @@ Slugs use the official Bulgarian transliteration (`kuhnyata`, not `kuhnqta`); a 
 
 ## Docs
 
-- `CONTEXT.md`: glossary
+- `GLOSSARY.md`: glossary
 - `docs/strategy.md`: brand, IA, SEO and design decisions
 - `docs/concepts-evaluation.md`: the three homepage concepts and why "Етикети" won
 - `docs/research/`: the research behind them
