@@ -50,6 +50,10 @@ _Avoid_: регистрация, sign-up, логин
 Leaving your Акаунт. It signs you out of every онова за project at once.
 _Avoid_: logout
 
+**Изтрий данните** (remove project data):
+Wipes what one project holds about you. Your Акаунт and the other projects stay, and you stay signed in. Deleting the Акаунт itself (**Изтрий Акаунта**) happens only on the hub.
+_Avoid_: изтрий профила, изтрий акаунта
+
 **Цвят** (`hue`):
 The project's OKLCH hue. Lightness and chroma come from the theme, so any hue outside 270 to 320 passes contrast.
 _Avoid_: brand colour (the hub does not copy each product's palette)
