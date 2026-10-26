@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { paths } from '@/lib/paths'
 
 import { NavLink } from './nav-link'
+import { NavAkaunt } from './prototype/nav-akaunt'
 
 export function SiteHeader() {
   return (
@@ -20,6 +21,7 @@ export function SiteHeader() {
         >
           <NavLink href={paths.projects()}>Проекти</NavLink>
           <NavLink href={paths.about()}>За мен</NavLink>
+          <NavAkaunt />
         </nav>
       </div>
     </header>
