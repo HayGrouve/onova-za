@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { Suspense, useSyncExternalStore } from 'react'
 
-import { isSignedIn } from '@/lib/akaunt'
+import { isSignedIn } from '@/lib/akaunt-cookie'
 import { paths } from '@/lib/paths'
 import { cn } from '@/lib/utils'
 

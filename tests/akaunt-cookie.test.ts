@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { isSignedIn } from '@/lib/akaunt'
+import { isSignedIn } from '@/lib/akaunt-cookie'
 import { paths } from '@/lib/paths'
 
 describe('isSignedIn', () => {
