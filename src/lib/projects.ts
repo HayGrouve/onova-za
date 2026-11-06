@@ -26,6 +26,14 @@ function load(): Project[] {
     if (slugs.has(p.slug)) throw new Error(`Duplicate project slug "${p.slug}"`)
     slugs.add(p.slug)
   }
+  const subdomains = new Set<string>()
+  for (const p of projects) {
+    if (!p.akaunt) continue
+    if (subdomains.has(p.akaunt.subdomain)) {
+      throw new Error(`Duplicate Акаунт subdomain "${p.akaunt.subdomain}"`)
+    }
+    subdomains.add(p.akaunt.subdomain)
+  }
   for (const p of projects) {
     for (const r of p.related ?? []) {
       if (r === p.slug || !slugs.has(r)) {
