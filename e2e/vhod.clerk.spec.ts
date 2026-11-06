@@ -126,6 +126,9 @@ test('a wrong code shows an error and keeps you on Вход', async ({ page }) =
     .analyze()
   expect(results.violations.map((v) => `${v.id}: ${v.help}`)).toEqual([])
 
+  await enterCode(page, '123')
+  await expect(page.locator('main').getByRole('alert')).toHaveText(/6 цифри/)
+
   await enterCode(page, '000000')
   await expect(page.locator('main').getByRole('alert')).toHaveText(
     /Кодът не е верен/,

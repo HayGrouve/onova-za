@@ -146,6 +146,7 @@ function Vhod({
     e.preventDefault()
     setError(null)
     setNotice(null)
+    if (code.length !== 6) return setError('Кодът е 6 цифри. Виж писмото.')
     if (notReady()) return
     const { error } = await signIn.emailCode.verifyCode({ code })
     if (error) {
@@ -166,6 +167,14 @@ function Vhod({
     if (signUp.status === 'complete') {
       leaving.current = true
       return finished(await signUp.finalize({ navigate }))
+    }
+    // Clerk's bot check (its own modal) was closed or failed. The code is
+    // spent by now, so start again from the email.
+    if (signUp.missingFields.includes('protect_check')) {
+      setStep('email')
+      return setError(
+        'Не успяхме да потвърдим, че си човек. Прати си нов код и опитай пак.',
+      )
     }
     setError(GENERIC)
   }
@@ -348,9 +357,10 @@ function CodeStep({
   useEffect(() => input.current?.focus(), [])
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-3">
+    <form onSubmit={onSubmit} className="flex flex-col gap-3" noValidate>
       <p className="text-lg text-pretty">
-        Пратихме 6 цифри на <strong className="break-all">{email}</strong>.
+        Пратихме 6 цифри на{' '}
+        <strong className="[overflow-wrap:anywhere]">{email}</strong>.
       </p>
       <p className="text-muted-foreground text-pretty">
         Писмото е на английски, от онова за. Кодът важи 10 минути.
@@ -376,7 +386,7 @@ function CodeStep({
       <ErrorLine error={error} />
       <Button
         type="submit"
-        disabled={busy || code.length !== 6}
+        disabled={busy}
         className="h-12 text-base font-semibold"
       >
         Влез
