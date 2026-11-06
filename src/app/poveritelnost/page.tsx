@@ -24,15 +24,6 @@ const Email = () => (
   <a href={`mailto:${controller.email}`}>{controller.email}</a>
 )
 
-// Shown until the owner fills controller.address in src/lib/legal.ts.
-function AddressPlaceholder() {
-  return (
-    <mark className="bg-destructive text-background inline-block px-2 py-1 font-bold">
-      ПОПЪЛНИ ПРЕДИ ПУБЛИКУВАНЕ: адрес за кореспонденция
-    </mark>
-  )
-}
-
 const sections: LegalSection[] = [
   {
     id: 'koy-sam-az',
@@ -49,10 +40,7 @@ const sections: LegalSection[] = [
           rows={[
             ['Име', controller.name],
             ['Имейл за лични данни', <Email key="email" />],
-            [
-              'Адрес за кореспонденция',
-              controller.address ?? <AddressPlaceholder key="address" />,
-            ],
+            ['Адрес за кореспонденция', controller.address],
           ]}
         />
         <p>

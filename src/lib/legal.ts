@@ -6,15 +6,7 @@ import { site } from './site'
 export const controller = {
   name: site.author.name,
   email: 'privacy@onovaza.com',
-  // OWNER: fill in the correspondence address before merge (#50). While it is
-  // null the page shows a loud placeholder, and a production build fails.
-  address: null as string | null,
-}
-
-if (controller.address === null && process.env.VERCEL_ENV === 'production') {
-  throw new Error(
-    'src/lib/legal.ts: controller.address is empty. Fill in the correspondence address before deploying to production.',
-  )
+  address: 'София, Йордан Стратиев 1',
 }
 
 export type LegalChange = { date: string; text: string }
