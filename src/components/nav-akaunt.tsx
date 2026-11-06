@@ -60,6 +60,9 @@ function AkauntLink({
   return (
     <Link
       href={signedIn ? paths.akaunt() : paths.vhod(here)}
+      // Prefetching /vhod or /akaunt would download their Clerk chunk on
+      // every page this nav is on; the click loads it instead.
+      prefetch={false}
       aria-current={current ? 'page' : undefined}
       className="link-quiet inline-grid py-2 text-right aria-[current=page]:underline aria-[current=page]:decoration-2"
     >
