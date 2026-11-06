@@ -56,10 +56,21 @@ const isVhod = (pathname: string) =>
 
 const rest = (url: URL) => `${url.pathname}${url.search}${url.hash}`
 
-const local = (url: URL): ReturnTo =>
-  isVhod(url.pathname)
+// A path on this host, checked as it will be navigated: dot segments like
+// `/.//evil.com` resolve to `//evil.com`, which a browser reads as a host.
+function local(url: URL): ReturnTo {
+  const href = rest(url)
+  if (
+    !href.startsWith('/') ||
+    href.startsWith('//') ||
+    href.startsWith('/\\')
+  ) {
+    return fallback()
+  }
+  return isVhod(url.pathname)
     ? fallback()
-    : { href: rest(url), fallback: url.pathname === FALLBACK }
+    : { href, fallback: url.pathname === FALLBACK }
+}
 
 /**
  * Where Вход sends you once you are in, from its `redirect_url`.

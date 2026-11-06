@@ -84,7 +84,11 @@ function Vhod({
     leaving.current = true
     setStep('done')
     if (/^https?:/.test(href)) window.location.assign(href)
-    else router.replace(href as Route)
+    // returnTo() already refuses `//host`; this keeps it out of the router
+    // whatever Clerk's decorateUrl hands back.
+    else if (href.startsWith('/') && !/^\/[/\\]/.test(href)) {
+      router.replace(href as Route)
+    } else router.replace(paths.akaunt())
   }
 
   // Already signed in: straight on, no form. The return from Google handles
