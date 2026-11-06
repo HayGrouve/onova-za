@@ -10,6 +10,12 @@ const slug = z
   .string()
   .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'Latin lowercase words joined by hyphens')
 
+// One DNS label under onovaza.com, like `smetkata` in smetkata.onovaza.com.
+const subdomain = z
+  .string()
+  .max(63)
+  .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'One lowercase DNS label, like smetkata')
+
 const httpsUrl = z.url({ protocol: /^https$/ })
 
 const isoDate = z.iso.date()
@@ -74,6 +80,9 @@ export const projectSchema = z
       })
       .default({}),
     featured: z.boolean().default(false),
+    // Set once the project uses the Акаунт and lives at
+    // `<subdomain>.onovaza.com` (ADR 0001). Each project's cutover sets its own.
+    akaunt: z.object({ subdomain }).optional(),
     // Accent hue (OKLCH degrees). Lightness and chroma come from the theme so
     // contrast holds for every hue. Keep hues 270 to 320 out.
     hue: z
@@ -113,6 +122,13 @@ export const projectSchema = z
         code: 'custom',
         path: ['client'],
         message: 'The client name is required for client work, and only then',
+      })
+    }
+    if (p.akaunt && p.owner !== 'own') {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['akaunt'],
+        message: 'Only own projects use the Акаунт',
       })
     }
     if (p.featured && !p.cover) {
