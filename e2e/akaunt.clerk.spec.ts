@@ -189,7 +189,9 @@ test.describe('signed in', () => {
 
   test('every tab passes axe, light and dark', async ({ page }) => {
     for (const colorScheme of ['light', 'dark'] as const) {
-      await page.emulateMedia({ colorScheme })
+      // Colours transition on a theme switch (#19); without motion axe never
+      // reads a half-faded button.
+      await page.emulateMedia({ colorScheme, reducedMotion: 'reduce' })
       for (const name of ['Профил', 'Вход', 'Проекти', 'Изтриване']) {
         await page.getByRole('tab', { name }).click()
         await expect(
