@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "ignore": ["src/components/ui/**"],
-  "entry": ["tests/stubs/*.ts"],
+  "entry": ["tests/stubs/*.ts", "e2e/*.setup.ts"],
   "ignoreExportsUsedInFile": true
 }
