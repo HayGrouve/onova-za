@@ -14,4 +14,6 @@ export const paths = {
       ? `/vhod?redirect_url=${encodeURIComponent(redirectUrl)}`
       : '/vhod') as Route,
   akaunt: () => '/akaunt' as Route,
+  privacy: () => '/poveritelnost' as Route,
+  terms: () => '/usloviya' as Route,
 }

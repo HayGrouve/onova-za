@@ -248,3 +248,26 @@ export function profileGraph(dateModified: string): Graph {
   }
   return { '@context': 'https://schema.org', '@graph': [page, personNode] }
 }
+
+// The privacy policy and the terms: a plain WebPage dated by its newest change.
+export function legalPageGraph({
+  path,
+  name,
+  dateModified,
+}: {
+  path: string
+  name: string
+  dateModified: string
+}): Graph {
+  const page: WebPage = {
+    '@type': 'WebPage',
+    url: absolute(path),
+    name,
+    inLanguage: 'bg',
+    dateModified,
+    isPartOf: { '@id': ids.website },
+    publisher: { '@id': ids.person },
+    breadcrumb: breadcrumbs([{ name: 'Начало', path: '/' }, { name }]),
+  }
+  return { '@context': 'https://schema.org', '@graph': [page, personNode] }
+}

@@ -7,6 +7,8 @@ const pages = [
   '/proekti/onova-za-smetkata',
   '/proekti/chef',
   '/za-men',
+  '/poveritelnost',
+  '/usloviya',
 ]
 
 async function jsonLd(page: Page) {
@@ -83,4 +85,16 @@ test('the skip link moves focus to the main content', async ({
   await expect(skip).toBeFocused()
   await page.keyboard.press('Enter')
   await expect(page).toHaveURL(/#main$/)
+})
+
+test('the home page footer links both legal pages', async ({ page }) => {
+  await page.goto('/')
+  const footer = page.locator('footer')
+  await expect(
+    footer.getByRole('link', { name: 'Поверителност' }),
+  ).toHaveAttribute('href', '/poveritelnost')
+  await expect(footer.getByRole('link', { name: 'Условия' })).toHaveAttribute(
+    'href',
+    '/usloviya',
+  )
 })
