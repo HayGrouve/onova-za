@@ -68,7 +68,9 @@ for (const path of ['/vhod', '/akaunt']) {
     })
 
     test('passes axe (WCAG 2.2 AA)', async ({ page }) => {
-      await page.goto(path)
+      // With a Clerk key, signed-out /akaunt moves on to /vhod once Clerk
+      // loads; let that settle before axe reads the page.
+      await page.goto(path, { waitUntil: 'networkidle' })
       const results = await new AxeBuilder({ page })
         .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
         .analyze()

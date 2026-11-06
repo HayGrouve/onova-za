@@ -1,33 +1,42 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 
+import { AkauntPanel } from '@/components/akaunt/akaunt-panel'
+import type { PanelProject } from '@/components/akaunt/types'
+import { akauntOrigin, akauntProjects } from '@/lib/akaunt'
+import { privacyChanges, termsChanges } from '@/lib/legal'
 import { paths } from '@/lib/paths'
 import { pageMeta } from '@/lib/seo'
 
 export const metadata: Metadata = pageMeta({
   path: paths.akaunt(),
   title: 'Акаунт',
-  description: 'Профилът ти, проектите ти и Изход.',
+  description: 'Профилът ти, начините за Вход, проектите и Изход.',
   noindex: true,
 })
 
-// Placeholder until the Акаунт page lands (#48): profile, the projects that
-// use the Акаунт, Изход and Изтрий Акаунта go here.
+// Only what the panel shows crosses into the client bundle, not the whole
+// project registry.
+const projects: PanelProject[] = akauntProjects.map((p) => ({
+  slug: p.slug,
+  za: p.za,
+  hue: p.hue,
+  origin: akauntOrigin(p),
+}))
+
+const materialChanges = {
+  privacy: privacyChanges.filter((c) => c.material),
+  terms: termsChanges.filter((c) => c.material),
+}
+
+// The page is static: the heading is in the HTML, and everything about the
+// person loads in the browser once Clerk does (#13, #46).
 export default function AkauntPage() {
   return (
-    <main id="main" className="shell pt-[clamp(2rem,5vw,3.5rem)]">
-      <h1 className="font-display text-[clamp(3rem,7vw,5.5rem)] leading-[0.95] font-extrabold tracking-[-0.01em]">
+    <main id="main" className="shell pt-[clamp(2rem,5vw,3.5rem)] pb-24">
+      <h1 className="font-display text-[clamp(2.5rem,5vw,3.5rem)] leading-none font-extrabold">
         Акаунт
       </h1>
-      <p className="mt-4 max-w-xl text-lg">
-        Тук скоро ще виждаш профила си и проектите, които ползваш, и ще излизаш
-        от Акаунта.
-      </p>
-      <p className="mt-10">
-        <Link href={paths.home()} className="link-prose font-semibold">
-          Към началото
-        </Link>
-      </p>
+      <AkauntPanel projects={projects} legalChanges={materialChanges} />
     </main>
   )
 }

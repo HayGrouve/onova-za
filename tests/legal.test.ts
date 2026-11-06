@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 
 import sitemap from '@/app/sitemap'
-import { formatLegalDate } from '@/lib/legal'
+import { formatLegalDate, legalNotices } from '@/lib/legal'
 
 const read = (path: string) =>
   readFileSync(
@@ -42,5 +42,32 @@ describe('legal pages', () => {
 
   it('formats the effective date in Bulgarian', () => {
     expect(formatLegalDate('2026-11-06')).toBe('6 ноември 2026 г.')
+  })
+
+  it('shows a material change on /akaunt for 30 days', () => {
+    const changes = {
+      privacy: [
+        {
+          date: '2027-03-01',
+          text: 'Нов обработващ.',
+          material: true as const,
+        },
+        { date: '2027-02-01', text: 'Поправена печатна грешка.' },
+        { date: '2026-11-06', text: 'Публикувана.' },
+      ],
+      terms: [{ date: '2026-11-06', text: 'Публикувани.' }],
+    }
+    const on = (iso: string) =>
+      legalNotices(new Date(`${iso}T12:00:00Z`), changes).map((n) => n.date)
+    expect(on('2027-03-01')).toEqual(['2027-03-01'])
+    expect(on('2027-03-30')).toEqual(['2027-03-01'])
+    expect(on('2027-03-31')).toEqual([])
+    expect(legalNotices(new Date('2027-03-02T00:00:00Z'), changes)).toEqual([
+      { ...changes.privacy[0], page: 'privacy' },
+    ])
+  })
+
+  it('has no notice at launch', () => {
+    expect(legalNotices(new Date('2026-11-06T12:00:00Z'))).toEqual([])
   })
 })
