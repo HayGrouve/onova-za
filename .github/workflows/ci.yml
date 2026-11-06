@@ -26,11 +26,20 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # The build bakes in the dev instance's publishable key so the Clerk
+      # e2e specs can sign in against `pnpm start`. On forks the secrets are
+      # empty: the build is keyless and the Clerk specs skip.
       - name: CI preflight
         run: pnpm run ci:preflight
+        env:
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
 
       - name: Install Playwright browser
         run: pnpm exec playwright install --with-deps chromium
 
       - name: Smoke tests
         run: pnpm run test:e2e
+        env:
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
