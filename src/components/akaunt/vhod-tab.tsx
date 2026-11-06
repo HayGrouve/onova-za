@@ -134,13 +134,16 @@ export function VhodTab({ user }: { user: UserResource }) {
                 key={address.id}
                 className="flex flex-wrap items-center gap-x-4 gap-y-1 py-3"
               >
-                <p className="min-w-0 flex-1 break-all">
-                  {address.emailAddress}
+                <p className="min-w-0 flex-1">
+                  <span className="break-all">{address.emailAddress}</span>
                   {primary && (
-                    <span className="text-muted-foreground"> (основен)</span>
+                    <span className="text-muted-foreground whitespace-nowrap">
+                      {' '}
+                      (основен)
+                    </span>
                   )}
                   {!verified && (
-                    <span className="text-muted-foreground">
+                    <span className="text-muted-foreground whitespace-nowrap">
                       {' '}
                       (не е потвърден)
                     </span>
