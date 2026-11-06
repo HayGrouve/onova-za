@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { readdirSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 
 import { describe, expect, it } from 'vitest'
@@ -38,7 +38,14 @@ describe('/vhod and /akaunt', () => {
   })
 
   it('keep em and en dashes out of the copy', () => {
-    for (const file of [...Object.values(pages), 'app/(akaunt)/layout.tsx']) {
+    const panel = readdirSync(
+      fileURLToPath(new URL('../src/components/akaunt', import.meta.url)),
+    ).map((name) => `components/akaunt/${name}`)
+    for (const file of [
+      ...Object.values(pages),
+      'app/(akaunt)/layout.tsx',
+      ...panel,
+    ]) {
       expect(read(file), file).not.toMatch(/[–—]/)
     }
   })
