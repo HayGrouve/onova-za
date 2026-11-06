@@ -1,5 +1,5 @@
 import AxeBuilder from '@axe-core/playwright'
-import { expect, test, type Page } from '@playwright/test'
+import { expect, test, type Page, type Response } from '@playwright/test'
 
 const pages = [
   '/',
@@ -53,6 +53,54 @@ for (const path of pages) {
     })
   })
 }
+
+// Вход and the Акаунт: the only routes that load Clerk, never indexed.
+for (const path of ['/vhod', '/akaunt']) {
+  test.describe(path, () => {
+    test('answers with one h1 and a noindex robots meta', async ({ page }) => {
+      const response = await page.goto(path)
+      expect(response?.status()).toBe(200)
+      await expect(page.locator('h1')).toHaveCount(1)
+      await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+        'content',
+        /noindex/,
+      )
+    })
+
+    test('passes axe (WCAG 2.2 AA)', async ({ page }) => {
+      await page.goto(path)
+      const results = await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+        .analyze()
+      expect(results.violations.map((v) => `${v.id}: ${v.help}`)).toEqual([])
+    })
+  })
+}
+
+test('the public pages are indexable and load no Clerk code', async ({
+  page,
+}) => {
+  for (const path of pages) {
+    const scripts: Promise<string>[] = []
+    const onResponse = (response: Response) => {
+      if (response.request().resourceType() === 'script') {
+        scripts.push(
+          response.text().then((body) => `${response.url()}\n${body}`),
+        )
+      }
+    }
+    page.on('response', onResponse)
+    await page.goto(path, { waitUntil: 'networkidle' })
+    page.off('response', onResponse)
+
+    await expect(page.locator('meta[name="robots"]')).toHaveCount(0)
+    const bodies = await Promise.all(scripts)
+    expect(bodies.length, path).toBeGreaterThan(0)
+    for (const body of bodies) {
+      expect(body, `${path}: ${body.split('\n')[0]}`).not.toMatch(/clerk/i)
+    }
+  }
+})
 
 test('every project on the home page links to its own page', async ({
   page,
