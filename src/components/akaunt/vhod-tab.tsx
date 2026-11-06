@@ -56,6 +56,10 @@ export function VhodTab({ user }: { user: UserResource }) {
   const google = user.externalAccounts.find((a) => a.provider === 'google')
   const googleConnected = google?.verification?.status === 'verified'
   const primaryId = user.primaryEmailAddressId
+  // The primary first, then confirmed, then any still waiting for a code.
+  const rank = (a: EmailAddressResource) =>
+    a.id === primaryId ? 0 : a.verification.status === 'verified' ? 1 : 2
+  const emails = [...user.emailAddresses].sort((a, b) => rank(a) - rank(b))
 
   return (
     <div className="flex flex-col gap-8">
@@ -120,7 +124,7 @@ export function VhodTab({ user }: { user: UserResource }) {
           </h3>
         </div>
         <ul className="divide-border border-border mt-3 divide-y border-y">
-          {user.emailAddresses.map((address) => {
+          {emails.map((address) => {
             // destroy() clears the resource, so keep the string.
             const email = address.emailAddress
             const primary = address.id === primaryId

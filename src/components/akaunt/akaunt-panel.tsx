@@ -139,10 +139,10 @@ function SignedIn({
         orientation={wide ? 'vertical' : 'horizontal'}
         className="border-border mt-10 grid gap-0 border md:grid-cols-[14rem_minmax(0,1fr)]"
       >
-        <div className="border-border bg-surface flex flex-row flex-wrap gap-1 border-b p-3 md:flex-col md:border-r md:border-b-0">
+        <div className="border-border bg-surface flex flex-col gap-1 border-b p-3 md:border-r md:border-b-0">
           <TabsList
             aria-label="Акаунт"
-            className="h-auto w-auto flex-row flex-wrap items-stretch justify-start gap-1 bg-transparent p-0 group-data-horizontal/tabs:h-auto md:w-full md:flex-col"
+            className="grid h-auto w-full grid-cols-2 items-stretch gap-1 bg-transparent p-0 group-data-horizontal/tabs:h-auto md:flex md:flex-col"
           >
             {TABS.map((t) => (
               <TabsTrigger
