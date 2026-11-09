@@ -10,7 +10,8 @@ Every own project with sign-in shares one Акаунт: a single Clerk productio
 
 ## Consequences
 
-- `docs/strategy.md` §5 "product domains stay canonical" is reversed: armyant.app, onova-za-smetkata.com and the `*.vercel.app` addresses 308 to the subdomain and stay registered for at least a year.
+- `docs/strategy.md` §5 "product domains stay canonical" is reversed: armyant.app, onova-za-smetkata.com and the `*.vercel.app` addresses 308 to the subdomain. onovaza.com is the only domain going forward.
+- The old domains are not renewed (decided 2026-11-09): they redirect until their registration runs out (armyant.app 2027-02-24, onova-za-smetkata.com 2027-07-08) and then lapse. Each project's cutover lands before its old domain expires, and by then nothing that matters points at it: no working share tokens in old links, no contact address on it. The free `*.vercel.app` addresses keep their redirect for at least a year.
 - Each project keeps its own Convex deployment, its own data and its own payments; all of them trust the one Clerk issuer. The hub has no database.
 - The Акаунт is optional wherever a project works without stored data. Deleting it is global: each project removes its own data on Clerk's `user.deleted`.
 - Sign-in is Google plus an email code; no passwords, no Apple.
