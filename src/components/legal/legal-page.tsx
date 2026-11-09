@@ -1,6 +1,12 @@
-import type { ReactNode } from 'react'
+import { Fragment, type ReactNode } from 'react'
 
-import { effectiveDate, formatLegalDate, type LegalChange } from '@/lib/legal'
+import {
+  controller,
+  effectiveDate,
+  formatLegalDate,
+  type LegalChange,
+  type ProjectAnchor,
+} from '@/lib/legal'
 
 export type LegalSection = {
   // Stable anchor: other pages, projects and Google's consent screen link to
@@ -109,4 +115,52 @@ export function Facts({ rows }: { rows: readonly [string, ReactNode][] }) {
       ))}
     </dl>
   )
+}
+
+// The address every legal page gives for questions about personal data.
+export const ControllerEmail = () => (
+  <a href={`mailto:${controller.email}`}>{controller.email}</a>
+)
+
+// The fixed headings of a project's section on /poveritelnost, in the order
+// every project uses them (#31, decision 13), so a reader can compare
+// projects point by point. A project fills each one; none can be skipped.
+const projectPrivacyHeadings = [
+  ['stores', 'Какво пази'],
+  ['why', 'Защо'],
+  ['where', 'Къде и при кои доставчици'],
+  ['howLong', 'Колко време'],
+  ['data', 'Изтегляне и Изтрий данните'],
+  ['special', 'Специално'],
+] as const
+
+export type ProjectPrivacy = {
+  id: ProjectAnchor
+  // The project's name, like "Онова за сметката".
+  title: string
+  // One or two lines on what the project is, above the fixed headings.
+  lead: ReactNode
+} & Record<(typeof projectPrivacyHeadings)[number][0], ReactNode>
+
+export function projectPrivacySection({
+  id,
+  title,
+  lead,
+  ...parts
+}: ProjectPrivacy): LegalSection {
+  return {
+    id,
+    title,
+    body: (
+      <>
+        {lead}
+        {projectPrivacyHeadings.map(([key, heading]) => (
+          <Fragment key={key}>
+            <h3>{heading}</h3>
+            {parts[key]}
+          </Fragment>
+        ))}
+      </>
+    ),
+  }
 }

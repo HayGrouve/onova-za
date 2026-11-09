@@ -4,9 +4,11 @@ import Link from 'next/link'
 import { JsonLd } from '@/components/json-ld'
 import {
   ChangeList,
+  ControllerEmail as Email,
   LegalPage,
   type LegalSection,
 } from '@/components/legal/legal-page'
+import { smetkataTerms } from '@/content/legal/smetkata'
 import { controller, effectiveDate, termsChanges } from '@/lib/legal'
 import { paths } from '@/lib/paths'
 import { legalPageGraph, pageMeta } from '@/lib/seo'
@@ -19,10 +21,6 @@ export const metadata: Metadata = pageMeta({
   description:
     'Правилата за Акаунта на онова за: кой може да го ползва, какво не се прави, как се изтрива и как те уведомявам за промени.',
 })
-
-const Email = () => (
-  <a href={`mailto:${controller.email}`}>{controller.email}</a>
-)
 
 const PrivacyLink = ({ hash = '' }: { hash?: string }) => (
   <Link href={`${paths.privacy()}${hash}` as never}>Поверителност</Link>
@@ -155,21 +153,23 @@ const sections: LegalSection[] = [
       </p>
     ),
   },
-  // Project sections. Each project's migration plan adds its own terms here,
-  // before that project's cutover, under a stable anchor: `smetkata` (its Pro
-  // plan, at billing launch), `klientite` (links /obrabotvane-na-danni, the
-  // processing terms for businesses), `kuhnyata`, `kafeto`. Never add an empty
-  // section ahead of time; the intro below stays.
+  // Project sections. Each project's migration plan adds its own terms right
+  // after this intro, before that project's cutover, under its stable anchor
+  // (`ProjectAnchor`), with the text in `src/content/legal/<anchor>.tsx`.
+  // `smetkata` gets its Pro plan at billing launch; `klientite` links
+  // /obrabotvane-na-danni, the processing terms for businesses. Never add an
+  // empty section ahead of time.
   {
     id: 'proektite',
     title: 'Проектите',
     body: (
       <p>
         Всеки проект, който ползва Акаунта, добавя тук свой раздел, ако има свои
-        правила. Засега нито един проект не ползва Акаунта.
+        правила.
       </p>
     ),
   },
+  smetkataTerms,
 ]
 
 export default function TermsPage() {
