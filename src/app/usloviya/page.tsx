@@ -9,6 +9,7 @@ import {
   type LegalSection,
 } from '@/components/legal/legal-page'
 import { klientiteTerms } from '@/content/legal/klientite'
+import { kuhnyataTerms } from '@/content/legal/kuhnyata'
 import { smetkataTerms } from '@/content/legal/smetkata'
 import { controller, effectiveDate, termsChanges } from '@/lib/legal'
 import { paths } from '@/lib/paths'
@@ -172,6 +173,7 @@ const sections: LegalSection[] = [
   },
   smetkataTerms,
   klientiteTerms,
+  kuhnyataTerms,
 ]
 
 export default function TermsPage() {

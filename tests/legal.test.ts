@@ -49,7 +49,7 @@ describe('legal pages', () => {
   it('give each project with a section the same anchor on both pages', () => {
     const privacy = read('app/poveritelnost/page.tsx')
     const terms = read('app/usloviya/page.tsx')
-    for (const anchor of ['smetkata', 'klientite']) {
+    for (const anchor of ['smetkata', 'klientite', 'kuhnyata']) {
       const content = read(`content/legal/${anchor}.tsx`)
       expect(content.match(new RegExp(`id: '${anchor}'`, 'g'))).toHaveLength(2)
       expect(privacy).toContain(`${anchor}Privacy,`)
