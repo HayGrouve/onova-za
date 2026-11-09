@@ -22,13 +22,21 @@ export type LegalChange = { date: string; text: string; material?: true }
 // every change; material changes also get a notice on /akaunt and /vhod for
 // 30 days (#31, decision 10).
 export const privacyChanges: readonly LegalChange[] = [
+  { date: '2026-11-09', text: 'Добавен раздел за Онова за клиентите.' },
   { date: '2026-11-09', text: 'Добавен раздел за Онова за сметката.' },
   { date: '2026-11-06', text: 'Публикувана.' },
 ]
 
 export const termsChanges: readonly LegalChange[] = [
+  { date: '2026-11-09', text: 'Добавен раздел за Онова за клиентите.' },
   { date: '2026-11-09', text: 'Добавен раздел за Онова за сметката.' },
   { date: '2026-11-06', text: 'Публикувани.' },
+]
+
+// /obrabotvane-na-danni, the processing terms for businesses in Клиентите.
+// Changes there are announced 30 days ahead (#33, decision 20).
+export const processingChanges: readonly LegalChange[] = [
+  { date: '2026-11-09', text: 'Публикувани.' },
 ]
 
 export const effectiveDate = (changes: readonly LegalChange[]) =>
