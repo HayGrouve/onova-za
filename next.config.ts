@@ -23,7 +23,9 @@ export const movedRedirects = moved.flatMap((name) => [
 // builds today's slugs (`dynamicParams = false`), so the old address 308s to
 // the new page, with the rest of the path (its OG image) and the query kept.
 // tests/content.test.ts checks every new slug is a project and no old one is.
-export const renamedSlugs: Record<string, string> = {}
+export const renamedSlugs: Record<string, string> = {
+  chef: 'onova-za-kuhnyata',
+}
 
 export const renamedRedirects = Object.entries(renamedSlugs).flatMap(
   ([from, to]) => [
