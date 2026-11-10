@@ -38,8 +38,8 @@ describe('isSignedIn', () => {
 
 describe('paths.vhod', () => {
   it('encodes the page to return to, query included', () => {
-    expect(paths.vhod('/proekti/chef?utm_source=x&a=б')).toBe(
-      '/vhod?redirect_url=%2Fproekti%2Fchef%3Futm_source%3Dx%26a%3D%D0%B1',
+    expect(paths.vhod('/proekti/onova-za-kuhnyata?utm_source=x&a=б')).toBe(
+      '/vhod?redirect_url=%2Fproekti%2Fonova-za-kuhnyata%3Futm_source%3Dx%26a%3D%D0%B1',
     )
   })
 })
