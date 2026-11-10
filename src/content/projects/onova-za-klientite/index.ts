@@ -16,11 +16,12 @@ export default defineProject({
   topics: ['biznes', 'pari'],
   featured: true,
   years: { from: 2026 },
-  updatedAt: '2026-10-07',
+  updatedAt: '2026-11-10',
   seo: { title: 'Онова за клиентите: клиенти, поръчки и пари' },
   links: {
-    live: 'https://onova-za-klientite.vercel.app',
+    live: 'https://klientite.onovaza.com',
   },
+  akaunt: { subdomain: 'klientite' },
   hue: 245,
   cover: {
     src: today,
