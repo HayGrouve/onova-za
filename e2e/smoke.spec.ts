@@ -5,7 +5,7 @@ const pages = [
   '/',
   '/proekti',
   '/proekti/onova-za-smetkata',
-  '/proekti/chef',
+  '/proekti/onova-za-kuhnyata',
   '/za-men',
   '/poveritelnost',
   '/usloviya',
