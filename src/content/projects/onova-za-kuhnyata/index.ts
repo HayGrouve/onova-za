@@ -19,9 +19,10 @@ export default defineProject({
   seo: { title: 'Онова за кухнята: рецепти и меню за седмицата' },
   uiLanguage: 'bg',
   links: {
-    live: 'https://armyant.app',
+    live: 'https://kuhnyata.onovaza.com',
     github: 'https://github.com/HayGrouve/chef',
   },
+  akaunt: { subdomain: 'kuhnyata' },
   featured: true,
   hue: 125,
   cover: {
