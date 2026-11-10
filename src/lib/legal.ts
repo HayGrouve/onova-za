@@ -22,6 +22,7 @@ export type LegalChange = { date: string; text: string; material?: true }
 // every change; material changes also get a notice on /akaunt and /vhod for
 // 30 days (#31, decision 10).
 export const privacyChanges: readonly LegalChange[] = [
+  { date: '2026-11-09', text: 'Добавен раздел за Онова за кафето.' },
   { date: '2026-11-09', text: 'Добавен раздел за Онова за кухнята.' },
   { date: '2026-11-09', text: 'Добавен раздел за Онова за клиентите.' },
   { date: '2026-11-09', text: 'Добавен раздел за Онова за сметката.' },
@@ -29,6 +30,7 @@ export const privacyChanges: readonly LegalChange[] = [
 ]
 
 export const termsChanges: readonly LegalChange[] = [
+  { date: '2026-11-09', text: 'Добавен раздел за Онова за кафето.' },
   { date: '2026-11-09', text: 'Добавен раздел за Онова за кухнята.' },
   { date: '2026-11-09', text: 'Добавен раздел за Онова за клиентите.' },
   { date: '2026-11-09', text: 'Добавен раздел за Онова за сметката.' },
