@@ -9,7 +9,7 @@ const base = registry[0]
 const project = (slug: string, akaunt?: ProjectInput['akaunt']) =>
   projectSchema.parse({ ...base, slug, related: undefined, akaunt })
 
-// Marked fixtures, since no real project uses the Акаунт yet.
+// Fixtures, so these tests hold whichever real projects are marked.
 const smetkata = project('smetkata', { subdomain: 'smetkata' })
 const kuhnyata = project('kuhnyata', { subdomain: 'kuhnyata' })
 const unmarked = project('bez-akaunt')
