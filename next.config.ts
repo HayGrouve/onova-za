@@ -4,7 +4,7 @@ import type { NextConfig } from 'next'
 // still works: it 308s there with the path and query kept (#29). Each
 // project's cutover adds its name; tests/akaunt-projects.test.ts checks the
 // list matches the projects marked with `akaunt`.
-const moved: string[] = []
+const moved: string[] = ['kafeto']
 
 export const movedRedirects = moved.flatMap((name) => [
   {
@@ -23,7 +23,9 @@ export const movedRedirects = moved.flatMap((name) => [
 // builds today's slugs (`dynamicParams = false`), so the old address 308s to
 // the new page, with the rest of the path (its OG image) and the query kept.
 // tests/content.test.ts checks every new slug is a project and no old one is.
-export const renamedSlugs: Record<string, string> = {}
+export const renamedSlugs: Record<string, string> = {
+  'dial-in': 'onova-za-kafeto',
+}
 
 export const renamedRedirects = Object.entries(renamedSlugs).flatMap(
   ([from, to]) => [

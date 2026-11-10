@@ -8,7 +8,7 @@ Synthesis of `docs/research/01` to `05`. This is the brief every page is built a
 
 ## 1. Brand
 
-"Онова за..." is what a Bulgarian says when the name of a thing escapes them but its purpose does not: "дай ми онова за отваряне на бутилки". The brand takes that literally: **every project is named by what it is for.** The product may have its own name (Dial In, RepoDeck, Iliaora); on this site it is also "онова за кафето", "онова за репотата", "онова за сладкишите".
+"Онова за..." is what a Bulgarian says when the name of a thing escapes them but its purpose does not: "дай ми онова за отваряне на бутилки". The brand takes that literally: **every project is named by what it is for.** The product may have its own name (Dictum, RepoDeck, Iliaora); on this site it is also "онова за приказките", "онова за репотата", "онова за сладкишите".
 
 - The **за-phrase** (`za` in data) is the brand's unit. One lowercase noun phrase per project. It is the biggest text on every card and the first thing on every project page.
 - Brand line: "Малки приложения и сайтове. Всяко е за нещо." Short, true, and it puns on "за".
@@ -52,7 +52,7 @@ Cards show only filterable facets: status and the client tag. Never tech stacks 
 
 ## 5. SEO
 
-- Latin slugs, official transliteration (`kuhnyata`, never `kuhnqta`); a product's own Latin spelling wins (`dial-in`, `repodeck`). Old spellings become 308 redirects.
+- Latin slugs, official transliteration (`kuhnyata`, never `kuhnqta`); a product's own Latin spelling wins (`dictum`, `repodeck`). Old spellings become 308 redirects.
 - Titles `{Име}: {какво прави} | онова за`; unique descriptions; per-page canonical (never in the root layout).
 - JSON-LD: home `WebSite` + `Person` + `Brand`; `/proekti` `CollectionPage` + `ItemList`; own app `WebPage` + `WebApplication` (RepoDeck `SoftwareApplication`); client work `WebPage` + `CreativeWork` with `creator`; `BreadcrumbList` on inner pages; About `ProfilePage`. No ratings, no Organization, no SearchAction.
 - Per-project OG images from the same fields (Sofia Sans keeps Bulgarian forms even in Satori).
