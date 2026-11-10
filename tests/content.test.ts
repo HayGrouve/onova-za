@@ -10,6 +10,8 @@ import { projects, relatedTo } from '@/lib/projects'
 import { projectTitle } from '@/lib/seo'
 import sitemap from '@/app/sitemap'
 
+import { renamedSlugs } from '../next.config'
+
 const folder = fileURLToPath(
   new URL('../src/content/projects', import.meta.url),
 )
@@ -41,6 +43,14 @@ describe('project registry', () => {
       .map((p) => `${projectTitle(p)} | онова за`)
       .filter((title) => title.length > 62)
     expect(tooLong).toEqual([])
+  })
+
+  it('redirects old slugs to a project, never away from one', () => {
+    const slugs = projects.map((p) => p.slug)
+    for (const [from, to] of Object.entries(renamedSlugs)) {
+      expect(slugs, from).not.toContain(from)
+      expect(slugs, from).toContain(to)
+    }
   })
 
   it('lists every project in the sitemap', () => {
