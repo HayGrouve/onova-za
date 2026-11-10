@@ -36,7 +36,9 @@ describe('returnTo', () => {
 
   it('returns to a path on this host, query and hash kept', () => {
     expect(href('/proekti')).toBe('/proekti')
-    expect(href('/proekti/chef?x=1#top')).toBe('/proekti/chef?x=1#top')
+    expect(href('/proekti/onova-za-kuhnyata?x=1#top')).toBe(
+      '/proekti/onova-za-kuhnyata?x=1#top',
+    )
     expect(href('/', PREVIEW)).toBe('/')
     expect(to('/proekti')).toEqual({ href: '/proekti', fallback: false })
     expect(to('/akaunt').fallback).toBe(true)
