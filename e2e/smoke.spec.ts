@@ -9,6 +9,7 @@ const pages = [
   '/za-men',
   '/poveritelnost',
   '/usloviya',
+  '/obrabotvane-na-danni',
 ]
 
 async function jsonLd(page: Page) {

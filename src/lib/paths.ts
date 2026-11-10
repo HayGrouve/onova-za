@@ -16,4 +16,6 @@ export const paths = {
   akaunt: () => '/akaunt' as Route,
   privacy: () => '/poveritelnost' as Route,
   terms: () => '/usloviya' as Route,
+  // The Art. 28 processing terms for businesses in Клиентите.
+  processing: () => '/obrabotvane-na-danni' as Route,
 }
