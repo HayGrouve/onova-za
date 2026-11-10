@@ -1,5 +1,24 @@
 import type { NextConfig } from 'next'
 
+// Projects that moved to `<name>.onovaza.com` (ADR 0001). `onovaza.com/<name>`
+// still works: it 308s there with the path and query kept (#29). Each
+// project's cutover adds its name; tests/akaunt-projects.test.ts checks the
+// list matches the projects marked with `akaunt`.
+const moved: string[] = []
+
+export const movedRedirects = moved.flatMap((name) => [
+  {
+    source: `/${name}`,
+    destination: `https://${name}.onovaza.com`,
+    permanent: true,
+  },
+  {
+    source: `/${name}/:path*`,
+    destination: `https://${name}.onovaza.com/:path*`,
+    permanent: true,
+  },
+])
+
 const nextConfig: NextConfig = {
   typedRoutes: true,
   images: {
@@ -12,6 +31,7 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['@phosphor-icons/react'],
   },
+  redirects: async () => movedRedirects,
 }
 
 export default nextConfig

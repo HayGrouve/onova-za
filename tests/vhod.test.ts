@@ -13,8 +13,9 @@ const base = registry[0]
 const project = (slug: string, akaunt?: ProjectInput['akaunt']) =>
   projectSchema.parse({ ...base, slug, related: undefined, akaunt })
 
-// Marked fixtures, since no real project uses the Акаунт yet. Кафето is left
-// unmarked to show that an old host only maps once its project is marked.
+// Fixtures, so these tests hold whichever real projects are marked (those are
+// in akaunt-projects.test.ts). Кафето is left unmarked to show that an old
+// host only maps once its project is marked.
 const smetkata = project('smetkata', { subdomain: 'smetkata' })
 const kuhnyata = project('kuhnyata', { subdomain: 'kuhnyata' })
 const klientite = project('klientite')
@@ -102,7 +103,7 @@ describe('returnTo', () => {
   it('falls back for old hosts whose project is not marked yet', () => {
     expect(href('https://onova-za-klientite.vercel.app/')).toBe('/akaunt')
     expect(href('https://dial-in-three.vercel.app/')).toBe('/akaunt')
-    // Nothing is marked in real data yet, so every old host falls back.
+    // Кухнята is not marked in real data yet, so its old host falls back.
     expect(returnTo('https://armyant.app/', HERE, akauntProjects).href).toBe(
       '/akaunt',
     )
