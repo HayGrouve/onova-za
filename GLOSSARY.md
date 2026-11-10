@@ -13,7 +13,7 @@ The lowercase noun phrase that completes "онова за ___" for a project: "�
 _Avoid_: tagline, subtitle, category
 
 **Име** (`name`):
-The product's own name ("Dial In", "Iliaora"). Shown next to the за-фраза, never instead of it.
+The product's own name ("Dictum", "Iliaora"). Shown next to the за-фраза, never instead of it.
 
 **Pitch**:
 What the project does, in one plain sentence. Shown on cards.
