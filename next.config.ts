@@ -4,7 +4,7 @@ import type { NextConfig } from 'next'
 // still works: it 308s there with the path and query kept (#29). Each
 // project's cutover adds its name; tests/akaunt-projects.test.ts checks the
 // list matches the projects marked with `akaunt`.
-const moved: string[] = ['smetkata']
+const moved: string[] = ['smetkata', 'klientite']
 
 export const movedRedirects = moved.flatMap((name) => [
   {
