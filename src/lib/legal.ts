@@ -9,6 +9,11 @@ export const controller = {
   address: 'София, Йордан Стратиев 1',
 }
 
+// The anchors of the project sections on /poveritelnost and /usloviya. Each
+// project's footer or "Данни" screen links to its own, and Сметката's and
+// Кухнята's old /privacy and /terms redirect to them, so never rename one.
+export type ProjectAnchor = 'smetkata' | 'klientite' | 'kuhnyata' | 'kafeto'
+
 // `material` marks a change people must hear about: /akaunt (and /vhod)
 // show it as a notice for 30 days from its date (#31, decision 10).
 export type LegalChange = { date: string; text: string; material?: true }
@@ -17,11 +22,23 @@ export type LegalChange = { date: string; text: string; material?: true }
 // every change; material changes also get a notice on /akaunt and /vhod for
 // 30 days (#31, decision 10).
 export const privacyChanges: readonly LegalChange[] = [
+  { date: '2026-11-25', text: 'Добавен раздел за Онова за кухнята.' },
+  { date: '2026-11-25', text: 'Добавен раздел за Онова за клиентите.' },
+  { date: '2026-11-25', text: 'Добавен раздел за Онова за сметката.' },
   { date: '2026-11-06', text: 'Публикувана.' },
 ]
 
 export const termsChanges: readonly LegalChange[] = [
+  { date: '2026-11-25', text: 'Добавен раздел за Онова за кухнята.' },
+  { date: '2026-11-25', text: 'Добавен раздел за Онова за клиентите.' },
+  { date: '2026-11-25', text: 'Добавен раздел за Онова за сметката.' },
   { date: '2026-11-06', text: 'Публикувани.' },
+]
+
+// /obrabotvane-na-danni, the processing terms for businesses in Клиентите.
+// Changes there are announced 30 days ahead (#33, decision 20).
+export const processingChanges: readonly LegalChange[] = [
+  { date: '2026-11-25', text: 'Публикувани.' },
 ]
 
 export const effectiveDate = (changes: readonly LegalChange[]) =>
