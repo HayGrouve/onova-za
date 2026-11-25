@@ -157,3 +157,11 @@ test('the home page footer links both legal pages', async ({ page }) => {
     '/usloviya',
   )
 })
+
+// The apps' redirectToSignIn writes Вход's query into the hash; Вход moves it
+// to the query, so it names the project and sends you back.
+test('Вход reads redirect_url from a hash query', async ({ page }) => {
+  const back = encodeURIComponent('https://smetkata.onovaza.com/bills/x?step=3')
+  await page.goto(`/vhod#/?redirect_url=${back}`)
+  await expect(page).toHaveURL(`/vhod?redirect_url=${back}`)
+})

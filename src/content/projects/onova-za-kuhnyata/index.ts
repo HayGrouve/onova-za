@@ -15,7 +15,7 @@ export default defineProject({
   status: 'live',
   topics: ['hrana', 'dom'],
   years: { from: 2025 },
-  updatedAt: '2026-11-10',
+  updatedAt: '2026-11-25',
   seo: { title: 'Онова за кухнята: рецепти и меню за седмицата' },
   uiLanguage: 'bg',
   links: {
