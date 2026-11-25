@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { readdirSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 
 import { describe, expect, it } from 'vitest'
@@ -15,9 +15,14 @@ const read = (path: string) =>
 const legalFiles = [
   'app/poveritelnost/page.tsx',
   'app/usloviya/page.tsx',
+  'app/obrabotvane-na-danni/page.tsx',
   'components/legal/legal-page.tsx',
   'components/site-footer.tsx',
   'lib/legal.ts',
+  // Every project's sections.
+  ...readdirSync(
+    fileURLToPath(new URL('../src/content/legal', import.meta.url)),
+  ).map((name) => `content/legal/${name}`),
 ]
 
 describe('legal pages', () => {
@@ -31,12 +36,24 @@ describe('legal pages', () => {
     const urls = sitemap().map((entry) => entry.url)
     expect(urls.some((u) => u.endsWith('/poveritelnost'))).toBe(true)
     expect(urls.some((u) => u.endsWith('/usloviya'))).toBe(true)
+    expect(urls.some((u) => u.endsWith('/obrabotvane-na-danni'))).toBe(true)
   })
 
   it('keep the anchors other pages link to', () => {
     const privacy = read('app/poveritelnost/page.tsx')
     for (const id of ['koy-sam-az', 'danni-ot-google', 'proektite']) {
       expect(privacy).toMatch(new RegExp(`id(: |=)['"]${id}['"]`))
+    }
+  })
+
+  it('give each project with a section the same anchor on both pages', () => {
+    const privacy = read('app/poveritelnost/page.tsx')
+    const terms = read('app/usloviya/page.tsx')
+    for (const anchor of ['smetkata', 'klientite', 'kuhnyata']) {
+      const content = read(`content/legal/${anchor}.tsx`)
+      expect(content.match(new RegExp(`id: '${anchor}'`, 'g'))).toHaveLength(2)
+      expect(privacy).toContain(`${anchor}Privacy,`)
+      expect(terms).toContain(`${anchor}Terms,`)
     }
   })
 
