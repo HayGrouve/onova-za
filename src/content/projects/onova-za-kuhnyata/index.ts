@@ -15,13 +15,14 @@ export default defineProject({
   status: 'live',
   topics: ['hrana', 'dom'],
   years: { from: 2025 },
-  updatedAt: '2026-11-10',
+  updatedAt: '2026-11-25',
   seo: { title: 'Онова за кухнята: рецепти и меню за седмицата' },
   uiLanguage: 'bg',
   links: {
-    live: 'https://armyant.app',
+    live: 'https://kuhnyata.onovaza.com',
     github: 'https://github.com/HayGrouve/chef',
   },
+  akaunt: { subdomain: 'kuhnyata' },
   featured: true,
   hue: 125,
   cover: {

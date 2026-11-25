@@ -105,10 +105,21 @@ describe('returnTo', () => {
   it('falls back for old hosts whose project is not marked yet', () => {
     expect(href('https://onova-za-klientite.vercel.app/')).toBe('/akaunt')
     expect(href('https://dial-in-three.vercel.app/')).toBe('/akaunt')
-    // Кухнята is not marked in real data yet, so its old host falls back.
-    expect(returnTo('https://armyant.app/', HERE, akauntProjects).href).toBe(
-      '/akaunt',
-    )
+    // In real data too: an old host whose project is not marked yet falls
+    // back. Marked projects' old hosts are in akaunt-projects.test.ts.
+    const marked = new Set(akauntProjects.map((p) => p.akaunt.subdomain))
+    for (const [host, subdomain] of Object.entries({
+      'onova-za-smetkata.com': 'smetkata',
+      'onova-za-klientite.vercel.app': 'klientite',
+      'armyant.app': 'kuhnyata',
+      'dial-in-three.vercel.app': 'kafeto',
+    })) {
+      if (marked.has(subdomain)) continue
+      expect(
+        returnTo(`https://${host}/`, HERE, akauntProjects).href,
+        host,
+      ).toBe('/akaunt')
+    }
   })
 
   it('falls back for old hosts over http, on another port or with credentials', () => {
