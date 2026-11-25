@@ -1,6 +1,11 @@
 import type { MetadataRoute } from 'next'
 
-import { effectiveDate, privacyChanges, termsChanges } from '@/lib/legal'
+import {
+  effectiveDate,
+  processingChanges,
+  privacyChanges,
+  termsChanges,
+} from '@/lib/legal'
 import { paths } from '@/lib/paths'
 import { projects } from '@/lib/projects'
 import { absolute } from '@/lib/seo'
@@ -28,5 +33,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: effectiveDate(privacyChanges),
     },
     { url: absolute(paths.terms()), lastModified: effectiveDate(termsChanges) },
+    {
+      url: absolute(paths.processing()),
+      lastModified: effectiveDate(processingChanges),
+    },
   ]
 }
