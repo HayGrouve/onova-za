@@ -14,7 +14,7 @@ export default defineProject({
   status: 'live',
   topics: ['kafe', 'hrana'],
   years: { from: 2026 },
-  updatedAt: '2026-11-10',
+  updatedAt: '2026-11-25',
   seo: { title: 'Онова за кафето: дневник за мелене на кафе' },
   uiLanguage: 'bg',
   links: {
