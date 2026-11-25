@@ -19,7 +19,12 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { paths } from '@/lib/paths'
-import { returnTo, type ReturnTo, type VhodProject } from '@/lib/vhod'
+import {
+  queryFromHash,
+  returnTo,
+  type ReturnTo,
+  type VhodProject,
+} from '@/lib/vhod'
 
 // Вход (#47): one column, email first, Google second. Our own form on
 // Clerk's hooks, so every word is ours. A new email creates the Акаунт in
@@ -41,6 +46,13 @@ export function VhodForm({ projects }: { projects: readonly VhodProject[] }) {
 
 function LiveVhod({ projects }: { projects: readonly VhodProject[] }) {
   const params = useSearchParams()
+  // The apps' redirectToSignIn lands here as `/vhod#/?redirect_url=…`: move
+  // it to the query, which useSearchParams follows.
+  useEffect(() => {
+    const { pathname, search, hash } = window.location
+    const query = queryFromHash(search, hash)
+    if (query) window.history.replaceState(null, '', `${pathname}${query}`)
+  }, [])
   return (
     <Vhod
       projects={projects}
