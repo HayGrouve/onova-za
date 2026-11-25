@@ -3,10 +3,12 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 import {
   ChangeList,
+  ControllerEmail as Email,
   Facts,
   LegalPage,
   type LegalSection,
 } from '@/components/legal/legal-page'
+import { smetkataPrivacy } from '@/content/legal/smetkata'
 import { controller, effectiveDate, privacyChanges } from '@/lib/legal'
 import { paths } from '@/lib/paths'
 import { legalPageGraph, pageMeta } from '@/lib/seo'
@@ -19,10 +21,6 @@ export const metadata: Metadata = pageMeta({
   description:
     'Какво пази Акаунтът на онова за, защо, при кои доставчици, колко време и как да го изтриеш. Без реклами и без проследяващи бисквитки.',
 })
-
-const Email = () => (
-  <a href={`mailto:${controller.email}`}>{controller.email}</a>
-)
 
 const sections: LegalSection[] = [
   {
@@ -318,12 +316,12 @@ const sections: LegalSection[] = [
     ),
   },
   // Project sections. Each project's migration plan adds its own section
-  // here, before that project's cutover, with a stable anchor that its footer
-  // or "Данни" screen links to: `smetkata`, `klientite`, `kuhnyata`, `kafeto`.
-  // Same headings in the same order for every project (#31, decision 13):
-  // what it stores; why (legal basis); where and by which processors; how
-  // long; export and Изтрий данните; anything special. Never add an empty
-  // section ahead of time; the intro below stays.
+  // right after this intro, before that project's cutover, with a stable
+  // anchor (`ProjectAnchor`) that its footer or "Данни" screen links to.
+  // The text lives in `src/content/legal/<anchor>.tsx`, built with
+  // `projectPrivacySection`, which keeps the same headings in the same order
+  // for every project (#31, decision 13). Never add an empty section ahead of
+  // time.
   {
     id: 'proektite',
     title: 'Проектите',
@@ -331,11 +329,11 @@ const sections: LegalSection[] = [
       <p>
         Всеки проект, който ползва Акаунта, добавя тук свой раздел с едни и същи
         точки: какво пази, защо, къде и при кои доставчици, колко време, как да
-        изтеглиш и изтриеш данните си и какво е специално за него. Засега нито
-        един проект не ползва Акаунта.
+        изтеглиш и изтриеш данните си и какво е специално за него.
       </p>
     ),
   },
+  smetkataPrivacy,
   {
     id: 'promeni',
     title: 'Промени',
