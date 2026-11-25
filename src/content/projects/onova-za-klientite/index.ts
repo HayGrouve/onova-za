@@ -12,11 +12,11 @@ export default defineProject({
     'Приложение за малък бизнес с услуги: клиенти, поръчки, срещи, плащания и разходи. Сам решаваш как се казват нещата и какви етапи минава работата.',
   owner: 'own',
   type: 'system',
-  status: 'building',
+  status: 'live',
   topics: ['biznes', 'pari'],
   featured: true,
   years: { from: 2026 },
-  updatedAt: '2026-11-10',
+  updatedAt: '2026-11-25',
   seo: { title: 'Онова за клиентите: клиенти, поръчки и пари' },
   links: {
     live: 'https://klientite.onovaza.com',

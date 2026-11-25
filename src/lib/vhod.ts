@@ -142,3 +142,20 @@ function moved(url: URL, among: readonly VhodProject[]): ReturnTo | undefined {
     fallback: false,
   }
 }
+
+/**
+ * Вход's query when Clerk put it in the hash. `redirectToSignIn` on a custom
+ * sign-in URL writes `/vhod#/?redirect_url=…`, the way its own hash-routed
+ * `<SignIn>` reads it, while Вход reads the query. Returns the query with the
+ * hash's params added (the query wins on a clash), or null when the hash has
+ * no `redirect_url` to move.
+ */
+export function queryFromHash(search: string, hash: string): string | null {
+  const inHash = /^#\/?\?(.*)$/.exec(hash)
+  if (!inHash) return null
+  const moved = new URLSearchParams(inHash[1])
+  if (!moved.has('redirect_url')) return null
+  const query = new URLSearchParams(search)
+  for (const [key, value] of moved) if (!query.has(key)) query.set(key, value)
+  return `?${query}`
+}
