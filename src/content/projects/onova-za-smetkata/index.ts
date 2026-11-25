@@ -18,10 +18,11 @@ export default defineProject({
   updatedAt: '2026-10-05',
   seo: { title: 'Онова за сметката: разделяне на сметка по артикули' },
   links: {
-    live: 'https://www.onova-za-smetkata.com',
+    live: 'https://smetkata.onovaza.com',
     github: 'https://github.com/HayGrouve/onova-za-smetkata',
   },
   featured: true,
+  akaunt: { subdomain: 'smetkata' },
   hue: 38,
   cover: {
     src: claim,
