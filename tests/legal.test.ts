@@ -15,6 +15,7 @@ const read = (path: string) =>
 const legalFiles = [
   'app/poveritelnost/page.tsx',
   'app/usloviya/page.tsx',
+  'app/obrabotvane-na-danni/page.tsx',
   'components/legal/legal-page.tsx',
   'components/site-footer.tsx',
   'lib/legal.ts',
@@ -35,6 +36,7 @@ describe('legal pages', () => {
     const urls = sitemap().map((entry) => entry.url)
     expect(urls.some((u) => u.endsWith('/poveritelnost'))).toBe(true)
     expect(urls.some((u) => u.endsWith('/usloviya'))).toBe(true)
+    expect(urls.some((u) => u.endsWith('/obrabotvane-na-danni'))).toBe(true)
   })
 
   it('keep the anchors other pages link to', () => {
@@ -47,7 +49,7 @@ describe('legal pages', () => {
   it('give each project with a section the same anchor on both pages', () => {
     const privacy = read('app/poveritelnost/page.tsx')
     const terms = read('app/usloviya/page.tsx')
-    for (const anchor of ['smetkata']) {
+    for (const anchor of ['smetkata', 'klientite']) {
       const content = read(`content/legal/${anchor}.tsx`)
       expect(content.match(new RegExp(`id: '${anchor}'`, 'g'))).toHaveLength(2)
       expect(privacy).toContain(`${anchor}Privacy,`)
