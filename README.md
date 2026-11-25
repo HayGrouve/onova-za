@@ -29,7 +29,7 @@ pnpm new:project onova-za-kuhnyata "кухнята"
 
 The order in `src/content/registry.ts` is the order on the wall. `featured: true` gives a label two rows and its screenshot; featured labels alternate sides, and if a group ends on an odd cell the last regular label runs full width.
 
-Slugs use the official Bulgarian transliteration (`kuhnyata`, not `kuhnqta`); a product's own Latin name wins (`dial-in`).
+Slugs use the official Bulgarian transliteration (`kuhnyata`, not `kuhnqta`); a product's own Latin name wins (`dictum`).
 
 ## Docs
 

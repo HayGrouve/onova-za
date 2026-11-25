@@ -45,7 +45,7 @@ const inline = z.string().trim().min(1)
 export const projectSchema = z
   .object({
     slug,
-    // Product name as people know it ("Dial In", "Онова за сметката").
+    // Product name as people know it ("Dictum", "Онова за сметката").
     name: z.string().min(2).max(40),
     // Completes the sentence "онова за ___". Short and lowercase.
     za: z
