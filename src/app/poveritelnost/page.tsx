@@ -8,6 +8,7 @@ import {
   LegalPage,
   type LegalSection,
 } from '@/components/legal/legal-page'
+import { kafetoPrivacy } from '@/content/legal/kafeto'
 import { klientitePrivacy } from '@/content/legal/klientite'
 import { kuhnyataPrivacy } from '@/content/legal/kuhnyata'
 import { smetkataPrivacy } from '@/content/legal/smetkata'
@@ -338,6 +339,7 @@ const sections: LegalSection[] = [
   smetkataPrivacy,
   klientitePrivacy,
   kuhnyataPrivacy,
+  kafetoPrivacy,
   {
     id: 'promeni',
     title: 'Промени',
