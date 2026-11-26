@@ -20,7 +20,7 @@ export default defineProject({
   uiLanguage: 'bg',
   links: {
     live: 'https://kuhnyata.onovaza.com',
-    github: 'https://github.com/HayGrouve/chef',
+    github: 'https://github.com/HayGrouve/onova-za-kuhnyata',
   },
   akaunt: { subdomain: 'kuhnyata' },
   featured: true,
