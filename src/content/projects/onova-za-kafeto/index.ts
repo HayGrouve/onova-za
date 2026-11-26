@@ -19,7 +19,7 @@ export default defineProject({
   uiLanguage: 'bg',
   links: {
     live: 'https://kafeto.onovaza.com',
-    github: 'https://github.com/HayGrouve/dial-in',
+    github: 'https://github.com/HayGrouve/onova-za-kafeto',
   },
   featured: true,
   akaunt: { subdomain: 'kafeto' },
