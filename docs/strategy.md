@@ -20,7 +20,7 @@ Synthesis of `docs/research/01` to `05`. This is the brief every page is built a
 
 | Path                 | Page    | Notes                                                                                                                                        |
 | -------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/`                  | Library | Brand intro + every project. Two headed groups under 15 projects: **Мои**, then **За клиенти**.                                              |
+| `/`                  | Library | Hub: "онова за ___" over real screenshots, then every project on a Рафт: С един Акаунт, Без Вход, За компютъра, За клиенти.                  |
 | `/proekti`           | Index   | Dense table of every project: за-phrase, name, status, type, years, domain. Doubles as the owner's dashboard. `CollectionPage` + `ItemList`. |
 | `/proekti/[slug]`    | Project | One page per project, own or client.                                                                                                         |
 | `/za-men`            | About   | Short. Who, what, why "онова за", profiles, contact. `ProfilePage`.                                                                          |
@@ -65,7 +65,7 @@ Cards show only filterable facets: status and the client tag. Never tech stacks 
 2. **One system, many accents.** Neutral cool greys; each project owns one OKLCH hue. Fill lightness and chroma are fixed per theme so every hue passes contrast.
 3. **Real work only.** Real screenshots, honest captions for demo data, no fake UI, no invented numbers.
 4. **Fast by default.** Server Components, static pages, two font families, no animation library.
-5. **Accessible by construction.** One link per card, visible focus, colour never alone, reduced motion honoured, alt text required by the schema.
+5. **Accessible by construction.** No nested links (each card action names its project), visible focus, colour never alone, reduced motion honoured, alt text required by the schema.
 6. **Adding a project is one folder and one line.** Everything else derives.
 
 ## 7. Data model

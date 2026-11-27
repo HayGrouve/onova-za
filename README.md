@@ -23,11 +23,11 @@ pnpm new:project onova-za-kuhnyata "кухнята"
 
 1. Drop a screenshot next to the new `index.ts` as `cover.webp` (browser shots 1440x900, phone shots 780x1688).
 2. Replace every `TODO` and fill in the fields. The schema explains each one; `pnpm build` fails with the slug and field until everything is valid (alt text, word counts, hue band, client block, no `TODO` left).
-3. Pick a `hue` (OKLCH degrees, anything outside 270 to 320). A test checks that every allowed hue keeps contrast in both themes, so any value is safe; pick one far from its neighbours on the wall.
+3. Pick a `hue` (OKLCH degrees, anything outside 270 to 320). A test checks that every allowed hue keeps contrast in both themes, so any value is safe; pick one far from its neighbours on the home page.
 4. Set `seo.title` (about 50 characters, what people would search for) if the default `{name}: {pitch}` is longer.
 5. That's it: the project appears on the homepage, the index, related projects, the sitemap, structured data and gets its own OG image.
 
-The order in `src/content/registry.ts` is the order on the wall. `featured: true` gives a label two rows and its screenshot; featured labels alternate sides, and if a group ends on an odd cell the last regular label runs full width.
+The order in `src/content/registry.ts` is the order in the home hero and on each shelf. The shelf follows from the data (`src/lib/shelves.ts`): `akaunt` set, `type: 'desktop'`, or client work; a `cover` puts the project in the hero.
 
 Slugs use the official Bulgarian transliteration (`kuhnyata`, not `kuhnqta`); a product's own Latin name wins (`dictum`).
 

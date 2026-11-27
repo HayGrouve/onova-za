@@ -4,6 +4,7 @@ import { join } from 'node:path'
 import { clampChroma, formatHex } from 'culori'
 import { ImageResponse } from 'next/og'
 
+import { domain } from './domain'
 import type { Project } from './project-schema'
 
 export const ogSize = { width: 1200, height: 630 }
@@ -33,8 +34,6 @@ const fontsPromise = Promise.all([
   },
   { name: 'Text', data: text, weight: 500 as const, style: 'normal' as const },
 ])
-
-const domain = (url: string) => new URL(url).host.replace(/^www\./, '')
 
 export async function projectOgImage(p: Project, siteHost: string) {
   const fonts = await fontsPromise
