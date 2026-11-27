@@ -1,7 +1,6 @@
 // Every published project, in editorial order: own work first, newest and
 // most alive on top. Adding a project means one folder and one line here.
-// On the home page featured labels take two rows and alternate sides, so
-// within a group the order also decides the layout.
+// The home page keeps this order within each shelf and in the hero.
 import dictum from './projects/dictum'
 import onovaZaKlientite from './projects/onova-za-klientite'
 import onovaZaImotite from './projects/onova-za-imotite'

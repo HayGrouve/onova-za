@@ -2,12 +2,11 @@ import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
 import Link from 'next/link'
 
 import { accent } from '@/lib/accent'
+import { domain } from '@/lib/domain'
 import { paths } from '@/lib/paths'
 import type { Project } from '@/lib/project-schema'
 
 import styles from './project-index.module.css'
-
-const domain = (url: string) => new URL(url).host.replace(/^www\./, '')
 
 // "Онова за сметката" is both the name and the phrase: say it once.
 const nameRepeatsPhrase = (p: Project) =>

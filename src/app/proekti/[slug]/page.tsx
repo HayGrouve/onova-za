@@ -133,9 +133,9 @@ export default async function ProjectPage({
           >
             Още онова за...
           </h2>
-          <Wall columns={3}>
+          <Wall>
             {related.map((r) => (
-              <Label key={r.slug} project={r} size="regular" morph={false} />
+              <Label key={r.slug} project={r} />
             ))}
           </Wall>
         </section>

@@ -2,11 +2,12 @@
 
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { Suspense, useSyncExternalStore } from 'react'
+import { Suspense } from 'react'
 
-import { isSignedIn } from '@/lib/akaunt-cookie'
 import { paths } from '@/lib/paths'
 import { cn } from '@/lib/utils'
+
+import { useSignedIn } from './use-signed-in'
 
 // The one Акаунт link, without loading Clerk. The static HTML always says
 // "Вход"; once the page runs, Clerk's cookie decides whether it says
@@ -28,18 +29,8 @@ function LiveAkauntLink({ pathname }: { pathname: string }) {
   const query = useSearchParams().toString()
   // The header survives client navigation (e.g. coming back from Вход), and
   // a new path re-renders this, which re-reads the cookie.
-  const signedIn = useSyncExternalStore(
-    subscribe,
-    () => isSignedIn(document.cookie),
-    () => false,
-  )
+  const signedIn = useSignedIn()
   return <AkauntLink signedIn={signedIn} pathname={pathname} query={query} />
-}
-
-// Nothing announces a cookie change; navigation and focus are enough.
-function subscribe(onChange: () => void) {
-  window.addEventListener('focus', onChange)
-  return () => window.removeEventListener('focus', onChange)
 }
 
 const LABELS = ['Вход', 'Акаунт'] as const

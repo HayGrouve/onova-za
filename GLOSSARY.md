@@ -20,8 +20,12 @@ What the project does, in one plain sentence. Shown on cards.
 _Avoid_: description (that is the meta description, a different field)
 
 **Библиотека** (library):
-The homepage: every project, grouped Мои then За клиенти.
+The homepage, the hub's front door: "онова за ___" over a real screenshot, then every project on its Рафт.
 _Avoid_: portfolio, dashboard, feed
+
+**Рафт** (shelf, `src/lib/shelves.ts`):
+A group on the homepage by how you use a project: С един Акаунт, Без Вход, За компютъра, За клиенти. Derived from the data, registry order inside, empty ones hidden.
+_Avoid_: category, section
 
 **Индекс** (index):
 `/proekti`, the dense table of every project with status, type, years and domain.

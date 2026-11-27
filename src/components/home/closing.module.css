@@ -1,0 +1,63 @@
+.closing {
+  display: grid;
+  gap: 1.75rem;
+  margin-top: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+/* The rule sits inside the column, not across the whole shell padding. */
+.closing::before {
+  content: '';
+  grid-column: 1 / -1;
+  height: 1px;
+  margin-bottom: clamp(0.25rem, 1.5vw, 1rem);
+  background: var(--border);
+}
+
+@media (min-width: 48rem) {
+  .closing {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+    column-gap: 3rem;
+  }
+}
+
+.term {
+  font-family: var(--font-display), var(--font-text), sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  line-height: 1;
+}
+
+.meaning {
+  max-width: 38ch;
+  margin-top: 0.5rem;
+  font-size: 1.125rem;
+  line-height: 1.45;
+  color: var(--muted-foreground);
+}
+
+.side {
+  display: grid;
+  gap: 1.25rem;
+}
+@media (min-width: 48rem) {
+  .side {
+    padding-top: 0.75rem;
+  }
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.maker {
+  max-width: 48ch;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+.maker :global(a) {
+  color: var(--foreground);
+}

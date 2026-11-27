@@ -1,6 +1,6 @@
 /* The label: the brand's one device. "онова за" over a huge noun, printed on
-   the project's colour. Used on the home wall, in "Още онова за..." and,
-   blown up, as the header of every project page. Colour comes from the
+   the project's colour. Used in "Още онова за..." and, blown up, as the
+   header of every project page. Colour comes from the
    [data-accent] element the label sits on (see globals.css). */
 
 .label {
@@ -139,135 +139,34 @@
   text-underline-offset: 0.2em;
 }
 
-/* Wide regular label: a drawer strip. Phrase and noun on the left, name and
+/* Wide label: a drawer strip. Phrase and noun on the left, name and
    pitch on the right, both sitting on the bottom edge. */
 @container (min-width: 28rem) {
-  .label[data-size='regular'] .inner {
+  .wall > .label .inner {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 15rem);
     grid-template-rows: auto 1fr;
     column-gap: 1.5rem;
   }
-  .label[data-size='regular'] .heading {
+  .wall > .label .heading {
     display: contents;
   }
-  .label[data-size='regular'] .phrase {
+  .wall > .label .phrase {
     grid-column: 1 / -1;
     grid-row: 1;
   }
-  .label[data-size='regular'] .noun {
+  .wall > .label .noun {
     grid-column: 1;
     grid-row: 2;
     align-self: end;
     margin-top: 0;
     font-size: clamp(2.5rem, 11cqw, 4.5rem);
   }
-  .label[data-size='regular'] .info {
+  .wall > .label .info {
     grid-column: 2;
     grid-row: 2;
     align-self: end;
     padding-top: 0;
-  }
-}
-
-.label[data-size='featured'] .noun {
-  font-size: clamp(3.25rem, 21cqw, 6rem);
-}
-
-/* ------------------------------------------------------------ screenshots */
-
-/* Narrow featured label: the art is a band under the text. */
-.art {
-  position: relative;
-  z-index: -1;
-  flex: none;
-  height: 13rem;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.shot {
-  position: absolute;
-  overflow: hidden;
-  border: 1px solid color-mix(in oklab, var(--fill-ink) 30%, transparent);
-  border-radius: var(--radius);
-  background: var(--fill-ink);
-}
-
-.shot img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.shot[data-frame='phone'] {
-  top: 1rem;
-  right: var(--pad-x);
-  width: clamp(7.5rem, 40cqw, 10.5rem);
-}
-
-.shot[data-frame='browser'],
-.shot[data-frame='bare'] {
-  top: 1.75rem;
-  right: -4cqw;
-  width: 72cqw;
-}
-
-/* Wide featured label: text on the left, the shot rises from the bottom
-   right and is cropped by the label's edge. */
-@container (min-width: 32rem) {
-  /* As tall as two rows of the wall, even in one column, so the shot has
-     room under the text. */
-  .label[data-size='featured'] .face {
-    min-height: 28.625rem;
-  }
-  .label[data-size='featured'] .art {
-    position: absolute;
-    inset: 0;
-    height: auto;
-  }
-  .label[data-size='featured'] .noun {
-    font-size: clamp(3rem, 14cqw, 6rem);
-  }
-  .label[data-size='featured'] .info {
-    margin-top: 0;
-    padding-top: 1rem;
-    max-width: 15rem;
-  }
-  /* A phone hangs from a fixed line under the rule, whatever its height,
-     and the label's bottom edge crops it. */
-  .label[data-size='featured'] .shot[data-frame='phone'] {
-    top: 5rem;
-    right: 1.5rem;
-    width: 40cqw;
-    max-width: 16rem;
-  }
-  .label[data-size='featured'] .shot[data-frame='browser'],
-  .label[data-size='featured'] .shot[data-frame='bare'] {
-    top: auto;
-    bottom: 0;
-    right: -5cqw;
-    width: 72cqw;
-    max-width: 26rem;
-    transform: translateY(16%);
-  }
-}
-
-/* In one column the label is not much wider than its text, so a phone
-   drops below a long noun. */
-@media (max-width: 47.99rem) {
-  @container (min-width: 32rem) and (max-width: 42rem) {
-    .label[data-size='featured'] .shot[data-frame='phone'] {
-      top: 9rem;
-    }
-  }
-}
-
-/* Full width on the two-column wall, a phone stays the size it has in half
-   a row. */
-@media (min-width: 48rem) {
-  .wall > .label[data-size='featured'][data-wide] .shot[data-frame='phone'] {
-    width: 15rem;
   }
 }
 
@@ -294,16 +193,10 @@
   }
 }
 
-/* --------------------------------------------------------- neutral labels */
-
-/* The same anatomy in ink instead of a hue, for links that are not projects. */
-.neutral {
-  --fill: var(--surface);
-  --fill-ink: var(--foreground);
-}
-
 /* --------------------------------------------------------------- the wall */
 
+/* Related projects under a project page: one column, three across on a
+   wide screen. */
 .wall {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -313,36 +206,9 @@
   list-style: none;
 }
 
-@media (min-width: 48rem) {
-  .wall {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-auto-rows: minmax(14rem, auto);
-    grid-auto-flow: dense;
-  }
-  .wall > .label {
-    grid-column: span 6;
-  }
-  .wall > .label[data-size='featured'] {
-    grid-row: span 2;
-  }
-  .wall > .label[data-side='end'] {
-    grid-column: 7 / span 6;
-  }
-  .wall > .label[data-wide] {
-    grid-column: 1 / -1;
-  }
-  /* Three across, for related projects under a project page. */
-  .wall[data-columns='3'] {
-    grid-auto-rows: auto;
-  }
-  .wall[data-columns='3'] > .label {
-    grid-column: span 12;
-  }
-}
-
 @media (min-width: 64rem) {
-  .wall[data-columns='3'] > .label {
-    grid-column: span 4;
+  .wall {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
